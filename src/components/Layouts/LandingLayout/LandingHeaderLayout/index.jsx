@@ -16,7 +16,7 @@ const LandingHeaderLayout = () => {
         wrapper: 'max-w-7xl px-6 ',
       }}>
       <NavbarBrand>
-        <img src={BILogo} alt="BI Logo" className="" width={240} height={90} />
+        <img src={BILogo} alt="BI Logo" className="" width={170} height={90} />
       </NavbarBrand>
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         {NAVBAR_ITEMS.map((item) => (
