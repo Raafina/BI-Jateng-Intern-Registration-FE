@@ -6,7 +6,9 @@ const LandingLayout = (props) => {
   return (
     <>
       <LandingHeaderLayout />
-      {children}
+      <div className="container mx-auto px-4 pb-9 sm:px-6 md:px-8 xl:px-36 ">
+        {children}
+      </div>
       <LandingFooterLayout />
     </>
   );

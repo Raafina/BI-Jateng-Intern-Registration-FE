@@ -3,9 +3,7 @@ import FAQ from './FAQ.constant';
 const FAQAccor = () => {
   return (
     <>
-      <section
-        id="FAQ"
-        className="container mx-auto px-4 pt-4 pb-11 sm:px-6 md:px-8 lg:py-32 xl:px-4">
+      <section id="FAQ">
         <div className="grid grid-cols-12">
           <div className="col-span-12 lg:col-span-5 ">
             <h1 className="text-[40px] md:text-5xl  leading-tight  text-center lg:text-left mb-5">
