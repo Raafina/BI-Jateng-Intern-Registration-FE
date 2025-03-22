@@ -1,11 +1,10 @@
-import PersyaratanImg from './../../assets/image/persyaratan.svg';
+import PersyaratanImg from '../../../../assets/image/persyaratan.svg';
 
 const Persyaratan = () => {
   return (
     <section
-      id="requirements"
-      className="container mx-auto px-4 pb-9 sm:px-6 md:px-8 py-14 xl:px-4"
-    >
+      id="persyaratan"
+      className="container mx-auto px-4 pb-9 sm:px-6 md:px-8 py-14 xl:px-4">
       <div className="grid grid-cols-12 ">
         <div className="col-span-12 lg:col-span-6 items-center hidden lg:flex">
           <img src={PersyaratanImg} alt="Persyaratan" />
@@ -44,8 +43,7 @@ const Persyaratan = () => {
                   Informasi bidang tugas dapat dilihat di{' '}
                   <a
                     href="https://example.com"
-                    className="text-blue-600 hover:underline"
-                  >
+                    className="text-blue-600 hover:underline">
                     tautan berikut ini
                   </a>
                   .

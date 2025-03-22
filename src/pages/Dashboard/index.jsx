@@ -1,12 +1,8 @@
-import DashboardSidebar from '../../components/DashboardSidebar';
-import TableData from '../../components/TableData/page';
-
+import Dashboard from '../../components/views/Dashboard';
 const DashboardPage = () => {
   return (
     <>
-      <DashboardSidebar>
-        <TableData />
-      </DashboardSidebar>
+      <Dashboard />
     </>
   );
 };

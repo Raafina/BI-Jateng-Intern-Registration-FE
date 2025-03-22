@@ -1,15 +1,16 @@
 /** @type {import('tailwindcss').Config} */
-const flowbite = require('flowbite-react/tailwind');
+const { heroui } = require('@heroui/react');
 
 export default {
   content: [
     './src/**/*.{js,jsx,ts,tsx}',
-    'node_modules/flowbite-react/lib/esm/**/*.js',
-    flowbite.content(),
+    './node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {
-      fontFamily: { circular: ['Circular STD'] },
+      fontFamily: {
+        inter: ['Inter', 'sans-serif'],
+      },
       colors: {
         blue: '#005596',
         blueHover: '#1A467A',
@@ -26,5 +27,5 @@ export default {
       ],
     },
   },
-  plugins: [require('flowbite/plugin'), flowbite.plugin()],
+  plugins: [heroui()],
 };

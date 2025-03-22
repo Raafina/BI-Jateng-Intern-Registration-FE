@@ -1,4 +1,4 @@
-import Formulir from '../../components/Formulir';
+import Formulir from '../../components/UI/ApplicationForm/Formulir';
 
 const Daftar = () => {
   return (

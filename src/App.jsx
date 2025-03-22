@@ -1,23 +1,19 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-
+import { ToastContainer } from 'react-toastify';
 import './index.css';
-import 'flowbite';
-
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-
-import Home from './pages/Home';
+import { Provider } from 'react-redux';
+import store from './redux/store';
+import Home from './pages/Landing';
 import Login from './pages/Login';
-import Register from './pages/Register';
+import Register from './pages/ApplicationForm';
 import Dashboard from './pages/Dashboard';
+
 const router = createBrowserRouter([
   {
     path: '/',
     element: (
       <>
-        <Navbar />
         <Home />
-        <Footer />
       </>
     ),
   },
@@ -38,7 +34,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: '/dashboard',
+    path: '/beranda',
     element: (
       <>
         <Dashboard />
@@ -49,9 +45,12 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <>
-      <RouterProvider router={router} />
-    </>
+    <Provider store={store}>
+      <main>
+        <RouterProvider router={router} />
+        <ToastContainer theme="colored" />
+      </main>
+    </Provider>
   );
 }
 

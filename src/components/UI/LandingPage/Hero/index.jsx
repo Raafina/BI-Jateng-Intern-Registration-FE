@@ -1,11 +1,10 @@
-import HeroImage from '../../assets/image/join-us.svg';
+import HeroImage from '../../../../assets/image/join-us.svg';
 
 const Hero = () => {
   return (
     <section
-      id="home"
-      className="container mx-auto pt-24 sm:px-6 md:px-8 xl:px-4"
-    >
+      id="beranda"
+      className="container mx-auto pt-4 sm:px-6 md:px-8 xl:px-4">
       <div className="grid grid-cols-12">
         <div className="col-span-12 lg:col-span-7 order-1 lg:order-2">
           <img src={HeroImage} alt="Hero 1" />
