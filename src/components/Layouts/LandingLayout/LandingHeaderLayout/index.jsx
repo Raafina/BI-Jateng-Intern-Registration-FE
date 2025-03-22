@@ -34,10 +34,9 @@ const LandingHeaderLayout = () => {
           <Button
             radius="full"
             as={Link}
-            color="primary"
             href="/register"
             target="_blank"
-            className=" font-inter px-8">
+            className=" font-inter px-8 bg-blue text-white">
             Daftar
           </Button>
         </NavbarItem>

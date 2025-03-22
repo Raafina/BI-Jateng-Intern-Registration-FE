@@ -4,7 +4,7 @@ const FAQ = [
     ariaLabel: 'Apa saja fasilitas yang didapatkan?',
     title: 'Apa saja fasilitas yang didapatkan?',
     content: (
-      <ul className="list-disc ms-5 ">
+      <ul className="list-disc ms-5 text-secondary-50">
         <li>Memperoleh bimbingan dalam pelaksanaan praktek kerja.</li>
         <li>
           Memperoleh uang bantuan transportasi/komunikasi perhari sesuai

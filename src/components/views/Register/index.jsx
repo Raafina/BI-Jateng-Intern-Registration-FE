@@ -5,8 +5,10 @@ import {
   SelectItem,
   DatePicker,
   Button,
+  Input,
 } from '@heroui/react';
-import { Input } from '@heroui/react';
+import {} from '@heroui/react';
+import { motion } from 'framer-motion';
 import { Controller } from 'react-hook-form';
 import useRegister from './useRegister';
 import {
@@ -19,14 +21,26 @@ const RegisterForm = () => {
   const { control, errors, handleSubmit } = useRegister();
   return (
     <>
-      <div className="py-6 md:py-14 flex flex-col items-center justify-center mx-72 ">
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.2, ease: 'easeOut' }}
+        className="py-6 md:py-14 flex flex-col items-center justify-center px-4 max-w-4xl mx-auto">
         <Card className="w-full border-2 shadow-lg border-slate-200 bg-slate-50 p-4 ">
           <CardBody>
-            <h1 className="text-3xl md:text-4xl leading-tight text-center mb-5">
+            <motion.h1
+              className="text-3xl md:text-4xl leading-tight text-center mb-5"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, ease: 'easeOut', delay: 0.2 }}>
               Formulir Pendaftaran
-            </h1>
-            <form className="grid grid-cols-1 md:grid-cols-2 gap-6 font-sans">
-              <div className="space-y-4 ">
+            </motion.h1>
+            <form className="grid grid-cols-1 md:grid-cols-2 gap-6 font-sans overflow-hidden">
+              <motion.div
+                className="space-y-4"
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 1, ease: 'easeOut', delay: 0.3 }}>
                 {/* Left section */}
                 <Controller
                   name="full_name"
@@ -122,10 +136,13 @@ const RegisterForm = () => {
                     />
                   )}
                 />
-              </div>
+              </motion.div>
 
               {/* Right Section */}
-              <div>
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 1, ease: 'easeOut', delay: 0.3 }}>
                 <div className="space-y-4">
                   <Controller
                     name="IPK"
@@ -226,22 +243,25 @@ const RegisterForm = () => {
                 </div>
 
                 {/* Buttons */}
-                <div className="flex justify-center md:justify-end mt-6 ">
+                <motion.div
+                  className="flex justify-center md:justify-end mt-6"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.8, ease: 'easeOut', delay: 0.5 }}>
                   <Button
                     radius="full"
-                    color="primary"
                     target="_blank"
-                    className="font-inter px-8"
+                    className="font-inter px-8 w-full md:w-0 bg-blue text-white "
                     type="submit"
                     onPress={handleSubmit(() => {})}>
                     Daftar
                   </Button>
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
             </form>
           </CardBody>
         </Card>
-      </div>
+      </motion.div>
     </>
   );
 };
