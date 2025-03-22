@@ -42,18 +42,13 @@ const FAQAccor = () => {
           transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
           className="col-span-12 lg:col-span-7">
           <Accordion key="faq-accordion" variant="single">
-            {FAQ.map((item, index) => (
+            {FAQ.map((item) => (
               <AccordionItem
                 key={item.id}
                 className="font-sans"
                 aria-label={item.ariaLabel}
                 title={item.title}>
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isVisible ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}>
-                  {item.content}
-                </motion.div>
+                {item.content}
               </AccordionItem>
             ))}
           </Accordion>
