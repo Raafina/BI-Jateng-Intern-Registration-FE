@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import store from './redux/store';
 import Home from './pages/Landing';
 import Login from './pages/Login';
-import Register from './pages/ApplicationForm';
+import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 
 const router = createBrowserRouter([

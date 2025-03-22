@@ -2,7 +2,7 @@ import PersyaratanImg from '../../../../assets/image/persyaratan.svg';
 import { Card, CardBody } from '@heroui/react';
 const Persyaratan = () => {
   return (
-    <section id="persyaratan" className="mb-28">
+    <section id="persyaratan" className=" mb-7 md:mb-28">
       <div className="grid grid-cols-12 ">
         <div className="col-span-12 lg:col-span-6 hidden lg:flex items-start m-10">
           <img src={PersyaratanImg} alt="Persyaratan" />

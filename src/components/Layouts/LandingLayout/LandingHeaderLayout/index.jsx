@@ -32,11 +32,12 @@ const LandingHeaderLayout = () => {
       <NavbarContent justify="end">
         <NavbarItem>
           <Button
+            radius="full"
             as={Link}
             color="primary"
             href="/register"
             target="_blank"
-            className="font-sans">
+            className=" font-inter px-8">
             Daftar
           </Button>
         </NavbarItem>

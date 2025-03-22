@@ -1,6 +1,6 @@
 import Landing from '../../components/views/Landing';
 
-const HomePages = () => {
+const LandingPage = () => {
   return (
     <>
       <Landing />
@@ -8,4 +8,4 @@ const HomePages = () => {
   );
 };
 
-export default HomePages;
+export default LandingPage;
