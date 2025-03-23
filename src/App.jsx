@@ -7,6 +7,7 @@ import Home from './pages/Landing';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
+import NotFound from './pages/404';
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,14 @@ const router = createBrowserRouter([
     element: (
       <>
         <Dashboard />
+      </>
+    ),
+  },
+  {
+    path: '*',
+    element: (
+      <>
+        <NotFound />
       </>
     ),
   },

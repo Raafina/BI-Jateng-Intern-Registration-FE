@@ -19,6 +19,7 @@ const LandingHeaderLayout = () => {
     <Navbar
       onMenuOpenChange={setIsMenuOpen}
       isBordered
+      className="fixed top-0 left-0 w-full shadow-md z-50"
       classNames={{
         wrapper: 'max-w-7xl px-6 ',
       }}>

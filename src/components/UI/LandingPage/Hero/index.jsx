@@ -10,7 +10,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section id="beranda" className="h-full">
+    <section id="beranda" className="h-full pt-20">
       <div className="grid grid-cols-12">
         <motion.div
           className="col-span-12 lg:col-span-7 order-1 lg:order-2"

@@ -24,13 +24,13 @@ const Requirement = () => {
   }, []);
 
   return (
-    <section id="persyaratan" className="mb-7 md:mb-28">
+    <section id="persyaratan" className=" md:mb-10 pt-14">
       <div className="grid grid-cols-12">
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={isVisible ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.8, ease: 'easeOut' }}
-          className="col-span-12 lg:col-span-6 hidden lg:flex items-start md:m-10">
+          className="col-span-12 lg:col-span-6 hidden lg:flex  md:m-10 items-center">
           <img src={PersyaratanImg} alt="Persyaratan" />
         </motion.div>
 

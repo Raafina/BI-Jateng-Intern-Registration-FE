@@ -24,7 +24,7 @@ const FAQAccor = () => {
   }, []);
 
   return (
-    <section id="FAQ">
+    <section id="FAQ" className="pt-20">
       <div className="grid grid-cols-12">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
