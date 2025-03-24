@@ -1,14 +1,15 @@
 import { cn } from '../../../../utils/cn';
 import BILogo from '../../../../assets/logo/bank-indonesia-with-text.svg';
 import { Listbox, ListboxItem, Button } from '@heroui/react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { CiLogout } from 'react-icons/ci';
 import PropTypes from 'prop-types';
 
 const DashboardSidebarLayout = (props) => {
   const { sidebarItems, isOpen } = props;
 
-  const router = useLocation();
+  const location = useLocation();
+
   return (
     <div
       className={cn(
@@ -25,27 +26,26 @@ const DashboardSidebarLayout = (props) => {
             height={90}
           />
         </div>
-        <Listbox
-          items={sidebarItems}
-          variant="solid"
-          aria-label="Dashboard Menu">
-          {(item) => (
-            <ListboxItem
-              key={item.key}
-              className={cn('my-1 h-12 text-2xl ', {
-                'bg-primary-600 text-white': router.pathname.startsWith(
-                  item.href
-                ),
-              })}
-              startContent={item.icon}
-              textValue={item.label}
-              aria-labelledby={item.label}
-              aria-describedby={item.label}
-              as={Link}
-              href={item.href}>
-              <p className="text-small font-inter">{item.label}</p>
-            </ListboxItem>
-          )}
+        <Listbox variant="solid" aria-label="Dashboard Menu">
+          {sidebarItems.map((item) => {
+            const isActive = location.pathname.startsWith(item.href);
+            return (
+              <ListboxItem
+                key={item.key}
+                className={cn('my-1 h-12 text-2xl', {
+                  'bg-primary-600 text-white': isActive,
+                })}
+                startContent={item.icon}
+                textValue={item.label}
+                aria-labelledby={item.label}
+                aria-describedby={item.label}
+                onPress={() => {
+                  window.location.href = item.href;
+                }}>
+                <p className="text-small font-inter">{item.label}</p>
+              </ListboxItem>
+            );
+          })}
         </Listbox>
       </div>
       <div className="flex items-center p-1">

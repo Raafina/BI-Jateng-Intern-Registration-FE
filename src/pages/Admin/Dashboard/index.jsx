@@ -1,4 +1,4 @@
-import Dashboard from '../../components/views/Dashboard';
+import Dashboard from '../../../components/views/Admin/Dashboard';
 const DashboardPage = () => {
   return (
     <>

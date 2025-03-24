@@ -1,89 +1,60 @@
-const TableData = () => {
+import {
+  Spinner,
+  Table,
+  TableBody,
+  TableCell,
+  TableColumn,
+  TableHeader,
+  TableRow,
+} from '@heroui/react';
+import { cn } from '../../../utils/cn';
+import PropTypes from 'prop-types';
+
+const TableData = (props) => {
+  const { columns, data, emptyContent, isLoading, renderCell } = props;
+
   return (
-    <>
-      <div className="mb-4">
-        <h1 className="text-3xl font-bold tracking-tight text-gray-900">
-          Data Mahasiswa
-        </h1>
-      </div>
-      <div className="relative overflow-x-auto shadow-md rounded-lg">
-        <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-          <thead className="text-xs text-white uppercase bg-blue font-sans">
-            <tr>
-              <th scope="col" className="px-6 py-3">
-                Product name
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Color
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Category
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Price
-              </th>
-              <th scope="col" className="px-6 py-3">
-                <span className="sr-only">Edit</span>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-              <th
-                scope="row"
-                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                Apple MacBook Pro 17
-              </th>
-              <td className="px-6 py-4">Silver</td>
-              <td className="px-6 py-4">Laptop</td>
-              <td className="px-6 py-4">$2999</td>
-              <td className="px-6 py-4 text-right">
-                <a
-                  href="#"
-                  className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                  Edit
-                </a>
-              </td>
-            </tr>
-            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-              <th
-                scope="row"
-                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                Microsoft Surface Pro
-              </th>
-              <td className="px-6 py-4">White</td>
-              <td className="px-6 py-4">Laptop PC</td>
-              <td className="px-6 py-4">$1999</td>
-              <td className="px-6 py-4 text-right">
-                <a
-                  href="#"
-                  className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                  Edit
-                </a>
-              </td>
-            </tr>
-            <tr className="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
-              <th
-                scope="row"
-                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                Magic Mouse 2
-              </th>
-              <td className="px-6 py-4">Black</td>
-              <td className="px-6 py-4">Accessories</td>
-              <td className="px-6 py-4">$99</td>
-              <td className="px-6 py-4 text-right">
-                <a
-                  href="#"
-                  className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                  Edit
-                </a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </>
+    <Table
+      classNames={{
+        base: 'max-w-full',
+        wrapper: cn({ 'overflow-x-hidden': true }),
+      }}>
+      <TableHeader columns={columns}>
+        {(column) => <TableColumn key={column.uid}>{column.name}</TableColumn>}
+      </TableHeader>
+
+      <TableBody
+        emptyContent={emptyContent}
+        isLoading={isLoading}
+        items={data}
+        loadingContent={
+          <div className="flex h-full w-full items-center justify-center bg-foreground-700/30 backdrop-blur-sm">
+            <Spinner color="primary" />
+          </div>
+        }>
+        {(item) => (
+          <TableRow key={item.id}>
+            {(columnKey) => (
+              <TableCell>{renderCell(item, columnKey)}</TableCell>
+            )}
+          </TableRow>
+        )}
+      </TableBody>
+    </Table>
   );
+};
+
+TableData.propTypes = {
+  columns: PropTypes.arrayOf(
+    PropTypes.shape({
+      uid: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  data: PropTypes.array.isRequired,
+  emptyContent: PropTypes.string,
+  isLoading: PropTypes.bool,
+  renderCell: PropTypes.func.isRequired,
 };
 
 export default TableData;

@@ -10,13 +10,13 @@ const SIDEBAR_ADMIN = [
   {
     key: 'category',
     label: 'Data Pendaftar',
-    href: '/beranda/data-pendaftar',
+    href: '/data-pendaftar',
     icon: <CiViewList />,
   },
   {
     key: 'banner',
     label: 'Hasil Seleksi ',
-    href: '/beranda/hasil-seleksi',
+    href: '/hasil-seleksi',
     icon: <CiStar />,
   },
 ];

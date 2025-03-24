@@ -9,7 +9,7 @@ const DashboardLayout = (props) => {
   return (
     <div className="max-w-screen-3xl 3xl:container flex">
       <DashboardSidebarLayout sidebarItems={SIDEBAR_ADMIN} isOpen={open} />
-      <div className="h-screen w-full overflow-y-auto p-8">
+      <div className="h-screen w-full overflow-y-auto px-8 py-4">
         <Navbar
           className="flex justify-between bg-transparent px-0"
           isBlurred={false}
@@ -22,7 +22,7 @@ const DashboardLayout = (props) => {
             className="lg:hidden"
           />
         </Navbar>
-        <p className="mb-4 text-small">{description}</p>
+        <p className="mb-4 text-small font-sans">{description}</p>
         {children}
       </div>
     </div>

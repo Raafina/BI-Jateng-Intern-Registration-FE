@@ -1,6 +1,6 @@
 import BILogo from '../../../assets/logo/bank-indonesia-with-text.svg';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { Button, Card, CardBody, Input } from '@heroui/react';
+import { Button, Card, CardBody, Input, Spinner } from '@heroui/react';
 import { Controller } from 'react-hook-form';
 import useLogin from './useLogin';
 const Login = () => {
@@ -9,6 +9,7 @@ const Login = () => {
     handleLogin,
     toggleVisibility,
     isVisible,
+    loading,
     control,
     errors,
   } = useLogin();
@@ -73,7 +74,7 @@ const Login = () => {
                   )}
                 />
                 <Button color="primary" size="lg" type="submit">
-                  Login
+                  {loading ? <Spinner /> : 'Login'}
                 </Button>
               </form>
             </CardBody>
