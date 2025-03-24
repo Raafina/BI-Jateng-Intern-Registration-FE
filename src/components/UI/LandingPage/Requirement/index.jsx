@@ -1,44 +1,15 @@
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
 import PersyaratanImg from '../../../../assets/image/persyaratan.svg';
 import { Card, CardBody } from '@heroui/react';
 
 const Requirement = () => {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const section = document.getElementById('persyaratan');
-      if (section) {
-        const rect = section.getBoundingClientRect();
-        if (rect.top < window.innerHeight * 0.75) {
-          setIsVisible(true);
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll();
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   return (
     <section id="persyaratan" className=" md:mb-10 pt-14">
       <div className="grid grid-cols-12">
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={isVisible ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
-          className="col-span-12 lg:col-span-6 hidden lg:flex  md:m-10 items-center">
+        <div className="col-span-12 lg:col-span-6 hidden lg:flex  md:m-10 items-center">
           <img src={PersyaratanImg} alt="Persyaratan" />
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          animate={isVisible ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.8, ease: 'easeOut', delay: 0.3 }}
-          className="col-span-12 lg:col-span-6 mt-6">
+        <div className="col-span-12 lg:col-span-6 mt-6">
           <h1 className="text-[40px] md:text-5xl leading-tight text-center mb-5">
             Persyaratan
           </h1>
@@ -90,7 +61,7 @@ const Requirement = () => {
               </ol>
             </CardBody>
           </Card>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

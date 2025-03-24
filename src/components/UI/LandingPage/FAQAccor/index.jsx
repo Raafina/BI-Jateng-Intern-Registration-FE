@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { Accordion, AccordionItem } from '@heroui/react';
 import FAQ from './FAQ.constant';
 
@@ -6,21 +5,13 @@ const FAQAccor = () => {
   return (
     <section id="FAQ" className="pt-20">
       <div className="grid grid-cols-12">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: 'easeOut' }}
-          className="col-span-12 lg:col-span-5">
+        <div className="col-span-12 lg:col-span-5">
           <h1 className="text-[40px] md:text-5xl leading-tight text-center lg:text-left mb-5">
             Frequently Asked Question
           </h1>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, x: 80 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
-          className="col-span-12 lg:col-span-7">
+        <div className="col-span-12 lg:col-span-7">
           <Accordion key="faq-accordion" variant="single">
             {FAQ.map((item) => (
               <AccordionItem
@@ -32,7 +23,7 @@ const FAQAccor = () => {
               </AccordionItem>
             ))}
           </Accordion>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
