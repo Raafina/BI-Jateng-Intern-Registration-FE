@@ -12,9 +12,11 @@ export default {
         inter: ['Inter', 'sans-serif'],
       },
       colors: {
-        blue: '#005596',
+        primary: '#005596',
         blueHover: '#1A467A',
         grey: '#191825',
+        danger: '#FF0000',
+        success: '#47d147',
       },
     },
     dropShadow: {

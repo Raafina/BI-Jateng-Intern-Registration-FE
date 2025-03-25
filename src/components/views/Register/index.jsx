@@ -251,7 +251,8 @@ const RegisterForm = () => {
                   <Button
                     radius="full"
                     target="_blank"
-                    className="font-inter px-8 w-full md:w-0 bg-blue text-white "
+                    color="primary"
+                    className="font-inter px-8 w-full md:w-0  text-white "
                     type="submit"
                     onPress={handleSubmit(() => {})}>
                     Daftar

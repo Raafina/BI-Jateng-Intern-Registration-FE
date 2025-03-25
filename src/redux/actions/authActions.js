@@ -82,8 +82,8 @@ export const getProfile =
         }
       }
     } catch (error) {
+      console.error(error);
       dispatch(logout());
-
       if (navigate) {
         if (errorRedirect) {
           navigate(errorRedirect);

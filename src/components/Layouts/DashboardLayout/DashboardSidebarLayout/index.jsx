@@ -33,7 +33,7 @@ const DashboardSidebarLayout = (props) => {
               <ListboxItem
                 key={item.key}
                 className={cn('my-1 h-12 text-2xl', {
-                  'bg-primary-600 text-white': isActive,
+                  'bg-primary text-white': isActive,
                 })}
                 startContent={item.icon}
                 textValue={item.label}
