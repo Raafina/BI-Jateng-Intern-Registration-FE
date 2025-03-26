@@ -10,6 +10,9 @@ import Dashboard from './pages/Admin/Dashboard';
 import ResultDatapage from './pages/Admin/ResultData';
 import NotFound from './pages/404';
 
+import NonProtected from './components/middlewares/NonProtected';
+import Protected from './components/middlewares/Protected';
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -31,24 +34,26 @@ const router = createBrowserRouter([
     path: '/login',
     element: (
       <>
-        <Login />
+        <NonProtected>
+          <Login />
+        </NonProtected>
       </>
     ),
   },
   {
     path: '/beranda',
     element: (
-      <>
+      <Protected>
         <Dashboard />
-      </>
+      </Protected>
     ),
   },
   {
     path: '/hasil-seleksi',
     element: (
-      <>
+      <Protected>
         <ResultDatapage />
-      </>
+      </Protected>
     ),
   },
   {

@@ -44,7 +44,6 @@ export const getProfile =
 
     if (!token) {
       dispatch(logout());
-
       if (navigate) {
         if (errorRedirect) {
           navigate(errorRedirect);
@@ -56,7 +55,7 @@ export const getProfile =
     let config = {
       method: 'get',
       maxBodyLength: Infinity,
-      url: `${import.meta.env.VITE_BACKEND_API}/api/v1/auth/profile`,
+      url: `${import.meta.env.VITE_BACKEND_API}/auth/profile`,
       headers: {
         Authorization: `Bearer ${token}`,
       },
