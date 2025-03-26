@@ -7,7 +7,8 @@ import Home from './pages/Landing';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Admin/Dashboard';
-import ResultDatapage from './pages/Admin/ResultData';
+import ApplicationDataPage from './pages/Admin/ApplicationData';
+import ResultDataPage from './pages/Admin/ResultData';
 import NotFound from './pages/404';
 
 import NonProtected from './components/middlewares/NonProtected';
@@ -49,10 +50,18 @@ const router = createBrowserRouter([
     ),
   },
   {
+    path: '/data-pendaftar',
+    element: (
+      <Protected>
+        <ApplicationDataPage />
+      </Protected>
+    ),
+  },
+  {
     path: '/hasil-seleksi',
     element: (
       <Protected>
-        <ResultDatapage />
+        <ResultDataPage />
       </Protected>
     ),
   },

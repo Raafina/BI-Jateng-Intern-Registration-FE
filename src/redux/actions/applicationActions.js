@@ -2,7 +2,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { setSAWResults } from '../reducers/SAWResultReducers';
 
-export const getSAWResults =
+export const getApplications =
   (
     month,
     year,
@@ -21,7 +21,7 @@ export const getSAWResults =
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
-      url: `${import.meta.env.VITE_BACKEND_API}/SAW`,
+      url: `${import.meta.env.VITE_BACKEND_API}/applications`,
       params: {
         month,
         year,

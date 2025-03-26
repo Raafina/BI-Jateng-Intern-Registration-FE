@@ -2,11 +2,13 @@ import DashboardLayout from '../../../Layouts/DashboardLayout';
 import TableData from '../../../UI/TableData';
 import { useDisclosure } from '@heroui/react';
 import { useEffect } from 'react';
-import { COLUMN_LISTS_RESULT_DATA } from './ResultData.constant';
-import useResultData from './useResultData';
-import SearchResultDataModal from './SearchResultDataModal';
+import { COLUMN_LISTS_APPLICATION_DATA } from '../ApplicationData/ApplicationData.constant';
+import useApplicationData from './useApplicationData';
+import ApplicationDataModal from './ApplicationDataModal';
+import UpdateDataModal from './UpdateDataModal';
+import { FaRegEdit, FaRegTrashAlt } from 'react-icons/fa';
 
-const ResultData = () => {
+const ApplicationData = () => {
   const {
     ResultSAW_Data,
     totalPages,
@@ -19,9 +21,10 @@ const ResultData = () => {
     fetchResults,
     handlePageChange,
     handleSearch,
-  } = useResultData();
+  } = useApplicationData();
 
-  const searchResultDataModal = useDisclosure();
+  const applicationDataModal = useDisclosure();
+  const updateDataModal = useDisclosure();
 
   useEffect(() => {
     fetchResults(1);
@@ -30,7 +33,7 @@ const ResultData = () => {
   const renderCell = (item, columnKey) => {
     const cellValue = item[columnKey];
     switch (columnKey) {
-      case 'accepted_division':
+      case 'division_request':
         return (
           <p
             className={`inline px-2 py-1 rounded-lg ${
@@ -46,6 +49,23 @@ const ResultData = () => {
             {cellValue}
           </p>
         );
+      case 'actions':
+        return (
+          <div className="flex justify-center gap-2">
+            <button
+              type="button"
+              className="text-blue bg-transparent hover:bg-transparent"
+              onClick={() => updateDataModal.onOpen(item)}>
+              <FaRegEdit size={15} />
+            </button>
+            <button
+              type="button"
+              className="text-red-600 bg-transparent hover:bg-transparent"
+              onClick={() => {}}>
+              <FaRegTrashAlt size={15} />
+            </button>
+          </div>
+        );
       default:
         return cellValue;
     }
@@ -58,25 +78,28 @@ const ResultData = () => {
       <TableData
         showDate
         buttonTopContentLabel="Cari Data"
-        columns={COLUMN_LISTS_RESULT_DATA}
+        buttonTopContentLabelSecond="Update Data"
+        columns={COLUMN_LISTS_APPLICATION_DATA}
         data={ResultSAW_Data}
         emptyContent="Hasil seleksi tidak ditemukan"
         isLoading={loading}
         renderCell={renderCell}
         totalPages={totalPages}
         currentPage={currentPage}
-        onClickButtonTopContent={searchResultDataModal.onOpen}
+        onClickButtonTopContent={applicationDataModal.onOpen}
+        onClickButtonTopContentSecond={updateDataModal.onOpen}
         onChangePage={handlePageChange}
         onChangeSearch={handleSearch}
       />
 
-      <SearchResultDataModal
-        {...searchResultDataModal}
+      <ApplicationDataModal
+        {...applicationDataModal}
         setMonth={setMonth}
         setYear={setYear}
       />
+      <UpdateDataModal {...updateDataModal} />
     </DashboardLayout>
   );
 };
 
-export default ResultData;
+export default ApplicationData;

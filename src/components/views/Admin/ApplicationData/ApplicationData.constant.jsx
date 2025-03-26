@@ -1,11 +1,11 @@
-const COLUMN_LISTS_RESULT_DATA = [
+const COLUMN_LISTS_APPLICATION_DATA = [
   {
     name: 'NAMA LENGKAP',
     uid: 'full_name',
   },
   {
     name: 'BIDANG KERJA',
-    uid: 'accepted_division',
+    uid: 'division_request',
   },
   {
     name: 'KATEGORI MAGANG',
@@ -28,9 +28,9 @@ const COLUMN_LISTS_RESULT_DATA = [
     uid: 'motivation_letter_score',
   },
   {
-    name: 'SKOR TOTAL',
-    uid: 'total_score',
+    name: 'ACTION',
+    uid: 'actions',
   },
 ];
 
-export { COLUMN_LISTS_RESULT_DATA };
+export { COLUMN_LISTS_APPLICATION_DATA };

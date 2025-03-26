@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getSAWResults } from '../../../../redux/actions/SAWResultActions';
+import { getApplications } from '../../../../redux/actions/applicationActions';
 import useDebounce from '../../../../hooks/useDebounce';
 
 export const useResultData = () => {
@@ -19,7 +19,7 @@ export const useResultData = () => {
   const fetchResults = useCallback(
     (page = 1, searchTerm = '') => {
       dispatch(
-        getSAWResults(
+        getApplications(
           month,
           year,
           searchTerm,

@@ -1,5 +1,4 @@
 import { useMemo } from 'react';
-import { cn } from '../../../utils/cn';
 import {
   Input,
   Button,
@@ -23,7 +22,9 @@ const TableData = (props) => {
     isLoading,
     renderCell,
     onClickButtonTopContent,
+    onClickButtonTopContentSecond,
     buttonTopContentLabel,
+    buttonTopContentLabelSecond,
     showSearch = true,
     totalPages,
     currentPage,
@@ -45,20 +46,32 @@ const TableData = (props) => {
             onChange={onChangeSearch}
           />
         )}
+        <div className="flex gap-x-2">
+          {buttonTopContentLabel && (
+            <Button
+              color="primary"
+              className="text-white font-sans"
+              onPress={onClickButtonTopContent}>
+              {buttonTopContentLabel}
+            </Button>
+          )}
 
-        {buttonTopContentLabel && (
-          <Button
-            color="primary"
-            className="text-white font-sans"
-            onPress={onClickButtonTopContent}>
-            {buttonTopContentLabel}
-          </Button>
-        )}
+          {buttonTopContentLabelSecond && (
+            <Button
+              color="primary"
+              className="text-white font-sans"
+              onPress={onClickButtonTopContentSecond}>
+              {buttonTopContentLabelSecond}
+            </Button>
+          )}
+        </div>
       </div>
     );
   }, [
     buttonTopContentLabel,
+    buttonTopContentLabelSecond,
     onClickButtonTopContent,
+    onClickButtonTopContentSecond,
     showSearch,
     onClearSearch,
     onChangeSearch,
@@ -89,7 +102,6 @@ const TableData = (props) => {
       bottomContentPlacement="outside"
       classNames={{
         base: 'max-w-full',
-        wrapper: cn({ 'overflow-x-hidden': true }),
       }}>
       <TableHeader columns={columns}>
         {(column) => (
@@ -135,7 +147,9 @@ TableData.propTypes = {
   renderCell: PropTypes.func.isRequired,
   showSearch: PropTypes.bool,
   buttonTopContentLabel: PropTypes.string,
+  buttonTopContentLabelSecond: PropTypes.string,
   onClickButtonTopContent: PropTypes.func,
+  onClickButtonTopContentSecond: PropTypes.func,
   totalPages: PropTypes.number,
   currentPage: PropTypes.number,
   onChangePage: PropTypes.func,
