@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import { setSAWResults } from '../reducers/SAWResultReducers';
 
 export const getSAWResults =
-  (month, year, currentPage, setTotalPages, setTotalItems) =>
+  (month, year, search, currentPage, setTotalPages, setTotalItems) =>
   async (dispatch, getState) => {
     const { token } = getState().auth;
 
@@ -20,6 +20,7 @@ export const getSAWResults =
         page: currentPage,
         limit: 10,
         sort: 'asc',
+        search: search,
       },
     };
     try {

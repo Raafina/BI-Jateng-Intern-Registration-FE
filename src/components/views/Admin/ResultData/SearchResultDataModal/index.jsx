@@ -60,7 +60,6 @@ SearchResultDataModal.propTypes = {
   onClose: PropTypes.func.isRequired,
   setMonth: PropTypes.func.isRequired,
   setYear: PropTypes.func.isRequired,
-  onSearch: PropTypes.func.isRequired,
 };
 
 export default SearchResultDataModal;

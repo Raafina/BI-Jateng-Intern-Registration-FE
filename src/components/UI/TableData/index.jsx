@@ -27,7 +27,9 @@ const TableData = (props) => {
     showSearch = true,
     totalPages,
     currentPage,
-    onPageChange,
+    onChangePage,
+    onClearSearch,
+    onChangeSearch,
   } = props;
 
   const TopContent = useMemo(() => {
@@ -39,8 +41,8 @@ const TableData = (props) => {
             isClearable
             className="w-full sm:max-w-[24%] font-sans"
             startContent={<CiSearch />}
-            onClear={() => {}}
-            onChange={() => {}}
+            onClear={onClearSearch}
+            onChange={onChangeSearch}
           />
         )}
 
@@ -54,7 +56,13 @@ const TableData = (props) => {
         )}
       </div>
     );
-  }, [buttonTopContentLabel, onClickButtonTopContent, showSearch]);
+  }, [
+    buttonTopContentLabel,
+    onClickButtonTopContent,
+    showSearch,
+    onClearSearch,
+    onChangeSearch,
+  ]);
 
   const BottomContent = useMemo(() => {
     return (
@@ -66,12 +74,12 @@ const TableData = (props) => {
             color="primary"
             page={currentPage}
             total={totalPages}
-            onChange={onPageChange}
+            onChange={onChangePage}
           />
         )}
       </div>
     );
-  }, [currentPage, totalPages, onPageChange]);
+  }, [currentPage, totalPages, onChangePage]);
 
   return (
     <Table
@@ -130,7 +138,10 @@ TableData.propTypes = {
   onClickButtonTopContent: PropTypes.func,
   totalPages: PropTypes.number,
   currentPage: PropTypes.number,
-  onPageChange: PropTypes.func,
+  onChangePage: PropTypes.func,
+  onChangeSearch: PropTypes.func,
+  onClearSearch: PropTypes.func,
+  search: PropTypes.string,
 };
 
 export default TableData;

@@ -1,5 +1,6 @@
 import { cn } from '../../../../utils/cn';
 import BILogo from '../../../../assets/logo/bank-indonesia-with-text.svg';
+import useDashboardSidebarLayout from './useDashboardSidebarLayout';
 import { Listbox, ListboxItem, Button } from '@heroui/react';
 import { useLocation } from 'react-router-dom';
 import { CiLogout } from 'react-icons/ci';
@@ -7,6 +8,8 @@ import PropTypes from 'prop-types';
 
 const DashboardSidebarLayout = (props) => {
   const { sidebarItems, isOpen } = props;
+
+  const { handleLogout } = useDashboardSidebarLayout();
 
   const location = useLocation();
 
@@ -55,7 +58,7 @@ const DashboardSidebarLayout = (props) => {
           variant="light"
           className="flex justify-start rounded-lg px-2 py-1.5"
           size="lg"
-          onPress={() => {}}>
+          onPress={handleLogout}>
           <CiLogout />
           Logout
         </Button>

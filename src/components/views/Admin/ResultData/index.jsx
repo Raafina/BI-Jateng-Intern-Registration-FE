@@ -17,6 +17,7 @@ const ResultData = () => {
     year,
     fetchResults,
     handlePageChange,
+    handleSearch,
   } = useResultData();
 
   const searchResultDataModal = useDisclosure();
@@ -52,7 +53,6 @@ const ResultData = () => {
   return (
     <DashboardLayout
       title="Hasil Seleksi"
-      onClickButtonTopContent={() => {}}
       description="Halaman ini akan menampilkan hasil seleksi yang telah dilakukan dengan sistem.">
       <TableData
         showDate
@@ -65,7 +65,8 @@ const ResultData = () => {
         totalPages={totalPages}
         currentPage={currentPage}
         onClickButtonTopContent={searchResultDataModal.onOpen}
-        onPageChange={handlePageChange}
+        onChangePage={handlePageChange}
+        onChangeSearch={handleSearch}
       />
 
       <SearchResultDataModal
