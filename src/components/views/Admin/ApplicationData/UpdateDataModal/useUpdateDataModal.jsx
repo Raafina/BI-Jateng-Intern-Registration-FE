@@ -1,8 +1,11 @@
+// import { useCallback } from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
+// import { getApplication } from '../../../../../redux/actions/applicationActions';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
-const registerSchema = yup.object().shape({
+const updateSchema = yup.object().shape({
   full_name: yup.string().required('Nama lengkap wajib diisi'),
   university: yup.string().required('Asal Universitas wajib diisi'),
   email: yup.string().email('Email tidak valid').required('Email wajib diisi'),
@@ -58,12 +61,14 @@ const registerSchema = yup.object().shape({
 });
 
 const useRegister = () => {
+  // const dispatch = useDispatch();
+
   const {
     control,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(registerSchema),
+    resolver: yupResolver(updateSchema),
   });
 
   return {

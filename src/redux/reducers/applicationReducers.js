@@ -13,15 +13,15 @@ const applicationSlice = createSlice({
   initialState,
   reducers: {
     setApplications: (state, action) => {
-      state.Applications = action.payload;
+      state.applications = action.payload;
     },
     setApplication: (state, action) => {
-      state.Application = action.payload;
+      state.applications = action.payload;
     },
   },
 });
 
-// exoirt the setter function
+// export the setter function
 export const { setApplications, setApplication } = applicationSlice.actions;
 
 // export the reducer

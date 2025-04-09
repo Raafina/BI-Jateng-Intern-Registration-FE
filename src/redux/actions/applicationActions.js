@@ -1,6 +1,9 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { setSAWResults } from '../reducers/SAWResultReducers';
+import {
+  setApplications,
+  setApplication,
+} from '../reducers/applicationReducers';
 
 export const getApplications =
   (
@@ -31,16 +34,40 @@ export const getApplications =
         search: search,
       },
     };
+
     try {
       setLoading(true);
       const response = await axios.request(config);
-      dispatch(setSAWResults(response.data.data));
+      dispatch(setApplications(response.data.data));
       setTotalPages(response.data.pagination.totalPages);
       setTotalItems(response.data.pagination.totalItems);
     } catch (error) {
       toast.error(error?.response?.data?.message);
-      dispatch(setSAWResults([]));
+      dispatch(setApplications([]));
       setTotalPages(0);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+export const getApplication =
+  (id, setLoading) => async (dispatch, getState) => {
+    const { token } = getState().auth;
+
+    let config = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      url: `${import.meta.env.VITE_BACKEND_API}/applications/${id}`,
+    };
+    try {
+      setLoading(true);
+      const response = await axios.request(config);
+      dispatch(setApplication(response.data.data));
+    } catch (error) {
+      toast.error(error?.response?.data?.message);
     } finally {
       setLoading(false);
     }

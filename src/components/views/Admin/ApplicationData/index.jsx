@@ -10,7 +10,7 @@ import { FaRegEdit, FaRegTrashAlt } from 'react-icons/fa';
 
 const ApplicationData = () => {
   const {
-    ResultSAW_Data,
+    ApplicationsData,
     totalPages,
     currentPage,
     month,
@@ -80,7 +80,7 @@ const ApplicationData = () => {
         buttonTopContentLabel="Cari Data"
         buttonTopContentLabelSecond="Update Data"
         columns={COLUMN_LISTS_APPLICATION_DATA}
-        data={ResultSAW_Data}
+        data={ApplicationsData || []}
         emptyContent="Hasil seleksi tidak ditemukan"
         isLoading={loading}
         renderCell={renderCell}

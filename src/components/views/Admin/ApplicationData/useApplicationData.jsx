@@ -14,7 +14,10 @@ export const useResultData = () => {
 
   const dispatch = useDispatch();
   const debounce = useDebounce();
-  const ResultSAW_Data = useSelector((state) => state.SAWResult.SAWResults);
+
+  const ApplicationsData = useSelector(
+    (state) => state.application.applications
+  );
 
   const fetchResults = useCallback(
     (page = 1, searchTerm = '') => {
@@ -54,7 +57,7 @@ export const useResultData = () => {
   );
 
   return {
-    ResultSAW_Data,
+    ApplicationsData,
     totalPages,
     totalItems,
     currentPage,

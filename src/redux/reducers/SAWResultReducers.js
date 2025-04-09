@@ -21,7 +21,7 @@ const SAWResultSlice = createSlice({
   },
 });
 
-// exoirt the setter function
+// export the setter function
 export const { setSAWResults, setSAWResult } = SAWResultSlice.actions;
 
 // export the reducer

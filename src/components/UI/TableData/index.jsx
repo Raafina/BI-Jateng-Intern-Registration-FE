@@ -22,9 +22,7 @@ const TableData = (props) => {
     isLoading,
     renderCell,
     onClickButtonTopContent,
-    onClickButtonTopContentSecond,
     buttonTopContentLabel,
-    buttonTopContentLabelSecond,
     showSearch = true,
     totalPages,
     currentPage,
@@ -55,23 +53,12 @@ const TableData = (props) => {
               {buttonTopContentLabel}
             </Button>
           )}
-
-          {buttonTopContentLabelSecond && (
-            <Button
-              color="primary"
-              className="text-white font-sans"
-              onPress={onClickButtonTopContentSecond}>
-              {buttonTopContentLabelSecond}
-            </Button>
-          )}
         </div>
       </div>
     );
   }, [
     buttonTopContentLabel,
-    buttonTopContentLabelSecond,
     onClickButtonTopContent,
-    onClickButtonTopContentSecond,
     showSearch,
     onClearSearch,
     onChangeSearch,
@@ -147,9 +134,7 @@ TableData.propTypes = {
   renderCell: PropTypes.func.isRequired,
   showSearch: PropTypes.bool,
   buttonTopContentLabel: PropTypes.string,
-  buttonTopContentLabelSecond: PropTypes.string,
   onClickButtonTopContent: PropTypes.func,
-  onClickButtonTopContentSecond: PropTypes.func,
   totalPages: PropTypes.number,
   currentPage: PropTypes.number,
   onChangePage: PropTypes.func,
