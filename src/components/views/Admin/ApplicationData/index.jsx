@@ -1,12 +1,13 @@
+import { useEffect } from 'react';
 import DashboardLayout from '../../../Layouts/DashboardLayout';
 import TableData from '../../../UI/TableData';
 import { useDisclosure } from '@heroui/react';
-import { useEffect } from 'react';
 import { COLUMN_LISTS_APPLICATION_DATA } from '../ApplicationData/ApplicationData.constant';
 import useApplicationData from './useApplicationData';
 import ApplicationDataModal from './ApplicationDataModal';
 import UpdateDataModal from './UpdateDataModal';
 import { FaRegEdit, FaRegTrashAlt } from 'react-icons/fa';
+import DeleteDataModal from './DeleteDataModal';
 
 const ApplicationData = () => {
   const {
@@ -16,6 +17,8 @@ const ApplicationData = () => {
     month,
     year,
     loading,
+    selectedId,
+    setSelectedId,
     setMonth,
     setYear,
     fetchResults,
@@ -25,10 +28,11 @@ const ApplicationData = () => {
 
   const applicationDataModal = useDisclosure();
   const updateDataModal = useDisclosure();
+  const deleteDataModal = useDisclosure();
 
   useEffect(() => {
     fetchResults(1);
-  }, [month, year, fetchResults]);
+  }, [month, year, fetchResults, currentPage, selectedId]);
 
   const renderCell = (item, columnKey) => {
     const cellValue = item[columnKey];
@@ -55,13 +59,20 @@ const ApplicationData = () => {
             <button
               type="button"
               className="text-blue bg-transparent hover:bg-transparent"
-              onClick={() => updateDataModal.onOpen(item)}>
+              onClick={() => {
+                setSelectedId(item.id);
+                console.log(selectedId, 'index');
+                updateDataModal.onOpen(item);
+              }}>
               <FaRegEdit size={15} />
             </button>
             <button
               type="button"
               className="text-red-600 bg-transparent hover:bg-transparent"
-              onClick={() => {}}>
+              onClick={() => {
+                setSelectedId(item.id);
+                deleteDataModal.onOpen(item);
+              }}>
               <FaRegTrashAlt size={15} />
             </button>
           </div>
@@ -98,6 +109,12 @@ const ApplicationData = () => {
         setYear={setYear}
       />
       <UpdateDataModal {...updateDataModal} />
+      <DeleteDataModal
+        {...deleteDataModal}
+        selectedId={selectedId}
+        fetchResults={fetchResults}
+        setSelectedId={setSelectedId}
+      />
     </DashboardLayout>
   );
 };

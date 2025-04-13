@@ -72,3 +72,26 @@ export const getApplication =
       setLoading(false);
     }
   };
+
+export const deleteApplication =
+  (id, setLoading, setSuccess) => async (dispatch, getState) => {
+    const { token } = getState().auth;
+
+    let config = {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      url: `${import.meta.env.VITE_BACKEND_API}/applications/${id}`,
+    };
+    try {
+      setLoading(true);
+      await axios.request(config);
+      setSuccess(true);
+    } catch (error) {
+      toast.error(error?.response?.data?.message);
+    } finally {
+      setLoading(false);
+    }
+  };

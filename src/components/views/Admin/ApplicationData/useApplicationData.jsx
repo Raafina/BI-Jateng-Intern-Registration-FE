@@ -11,6 +11,7 @@ export const useResultData = () => {
   const [month, setMonth] = useState('08');
   const [year, setYear] = useState('2025');
   const [search, setSearch] = useState('');
+  const [selectedId, setSelectedId] = useState('');
 
   const dispatch = useDispatch();
   const debounce = useDebounce();
@@ -64,6 +65,8 @@ export const useResultData = () => {
     month,
     year,
     loading,
+    selectedId,
+    setSelectedId,
     fetchResults,
     setMonth,
     setYear,
