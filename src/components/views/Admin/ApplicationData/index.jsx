@@ -87,8 +87,13 @@ const ApplicationData = () => {
 
   return (
     <DashboardLayout
-      title="Hasil Seleksi"
-      description="Halaman ini akan menampilkan hasil seleksi yang telah dilakukan dengan sistem."
+      title={'Data Pendaftar Periode  ' + month + '/' + year}
+      description={
+        'Halaman ini akan menampilkan data pendaftar untuk periode ' +
+        month +
+        '/' +
+        year
+      }
     >
       <TableData
         showDate
