@@ -16,12 +16,12 @@ const registerSchema = yup.object().shape({
     .string()
     .oneOf(
       [
-        'moneter',
-        'makroprudensial',
-        'sistem_pembayaran',
-        'pengelolaan_uang_rupiah',
-        'humas',
-        'internal',
+        'Moneter',
+        'Makroprudensial',
+        'Sistem Pembayaran',
+        'Pengelolaan Uang Rupiah',
+        'Humas',
+        'Internal',
       ],
       'Bidang Peminatan tidak valid'
     )
@@ -30,7 +30,15 @@ const registerSchema = yup.object().shape({
   college_major: yup
     .string()
     .oneOf(
-      ['akuntansi', 'manajemen', 'IT', 'hukum', 'statistika', 'ilmu_sosial'],
+      [
+        'Ekonomi',
+        'Akuntansi',
+        'Manajemen',
+        'IT',
+        'Hukum',
+        'Statistika',
+        'Ilmu Sosial',
+      ],
       'Jurusan tidak valid'
     )
     .required('Jurusan wajib diisi'),

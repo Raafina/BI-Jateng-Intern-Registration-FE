@@ -23,20 +23,23 @@ const Login = () => {
             initial={{ opacity: 0, ys: -50 }}
             whileInView={{ opacity: 1, ys: 0 }}
             viewport={{ once: true, amount: 0.5 }}
-            transition={{ duration: 0.5 }}>
+            transition={{ duration: 0.5 }}
+          >
             <Card>
               <CardBody className="p-8">
                 <div className="flex justify-center">
                   <a
                     href="/"
-                    className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
+                    className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
+                  >
                     <img className="w-64 h-w-64 mr-2" src={BILogo} alt="logo" />
                   </a>
                 </div>
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">Login</h2>
                 <form
                   className="flex w-80 flex-col gap-4"
-                  onSubmit={handleSubmit(handleLogin)}>
+                  onSubmit={handleSubmit(handleLogin)}
+                >
                   <Controller
                     name="email"
                     control={control}
@@ -68,7 +71,8 @@ const Login = () => {
                           <button
                             className="focus:outline-none"
                             type="button"
-                            onClick={toggleVisibility}>
+                            onClick={toggleVisibility}
+                          >
                             {isVisible ? (
                               <FaEye className="pointer-events-none text-xl text-default-400" />
                             ) : (

@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
-import DashboardLayout from '../../../Layouts/DashboardLayout';
-import TableData from '../../../UI/TableData';
 import { useDisclosure } from '@heroui/react';
 import { COLUMN_LISTS_APPLICATION_DATA } from '../ApplicationData/ApplicationData.constant';
+import { FaRegEdit, FaRegTrashAlt } from 'react-icons/fa';
+import DashboardLayout from '../../../Layouts/DashboardLayout';
+import TableData from '../../../UI/TableData';
 import useApplicationData from './useApplicationData';
 import ApplicationDataModal from './ApplicationDataModal';
-import UpdateDataModal from './UpdateDataModal';
-import { FaRegEdit, FaRegTrashAlt } from 'react-icons/fa';
-import DeleteDataModal from './DeleteDataModal';
+import UpdateApplicationDataModal from './UpdateApplicationDataModal';
+import DeleteApplicationDataModal from './DeleteApplicationDataModal';
 
 const ApplicationData = () => {
   const {
@@ -27,12 +27,12 @@ const ApplicationData = () => {
   } = useApplicationData();
 
   const applicationDataModal = useDisclosure();
-  const updateDataModal = useDisclosure();
-  const deleteDataModal = useDisclosure();
+  const updateApplicationDataModal = useDisclosure();
+  const deleteApplicationDataModal = useDisclosure();
 
   useEffect(() => {
     fetchResults(1);
-  }, [month, year, fetchResults, currentPage, selectedId]);
+  }, [month, year, currentPage, fetchResults]);
 
   const renderCell = (item, columnKey) => {
     const cellValue = item[columnKey];
@@ -62,8 +62,7 @@ const ApplicationData = () => {
               className="text-blue bg-transparent hover:bg-transparent"
               onClick={() => {
                 setSelectedId(item.id);
-                console.log(selectedId, 'index');
-                updateDataModal.onOpen(item);
+                updateApplicationDataModal.onOpen(item);
               }}
             >
               <FaRegEdit size={15} />
@@ -73,7 +72,7 @@ const ApplicationData = () => {
               className="text-red-600 bg-transparent hover:bg-transparent"
               onClick={() => {
                 setSelectedId(item.id);
-                deleteDataModal.onOpen(item);
+                deleteApplicationDataModal.onOpen(item);
               }}
             >
               <FaRegTrashAlt size={15} />
@@ -102,7 +101,7 @@ const ApplicationData = () => {
         totalPages={totalPages}
         currentPage={currentPage}
         onClickButtonTopContent={applicationDataModal.onOpen}
-        onClickButtonTopContentSecond={updateDataModal.onOpen}
+        onClickButtonTopContentSecond={updateApplicationDataModal.onOpen}
         onChangePage={handlePageChange}
         onChangeSearch={handleSearch}
       />
@@ -112,13 +111,15 @@ const ApplicationData = () => {
         setMonth={setMonth}
         setYear={setYear}
       />
-      <UpdateDataModal
-        {...updateDataModal}
+      <UpdateApplicationDataModal
+        {...updateApplicationDataModal}
+        fetchResults={fetchResults}
         selectedId={selectedId}
         setSelectedId={setSelectedId}
       />
-      <DeleteDataModal
-        {...deleteDataModal}
+      <DeleteApplicationDataModal
+        {...deleteApplicationDataModal}
+        fetchResults={fetchResults}
         selectedId={selectedId}
         setSelectedId={setSelectedId}
       />

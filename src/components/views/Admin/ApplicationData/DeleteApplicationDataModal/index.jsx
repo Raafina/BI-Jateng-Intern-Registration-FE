@@ -9,19 +9,29 @@ import {
   Spinner,
 } from '@heroui/react';
 import PropTypes from 'prop-types';
-import useDeleteDataModal from './useDeleteDataModal';
+import useDeleteApplicationDataModal from './useDeleteApplicationDataModal';
 
-const DeleteDataModal = (props) => {
-  const { isOpen, onOpenChange, onClose, selectedId, setSelectedId } = props;
+const DeleteApplicationDataModal = (props) => {
+  const {
+    isOpen,
+    onOpenChange,
+    onClose,
+    fetchResults,
+    selectedId,
+    setSelectedId,
+  } = props;
 
-  const { loading, success, handleDelete } = useDeleteDataModal();
+  const { loading, success, handleDelete, resetSuccess } =
+    useDeleteApplicationDataModal();
 
   useEffect(() => {
     if (success) {
       onClose();
       setSelectedId('');
+      fetchResults();
+      resetSuccess();
     }
-  }, [success, onClose, setSelectedId]);
+  }, [success, onClose, setSelectedId, fetchResults, resetSuccess]);
 
   return (
     <Modal
@@ -29,7 +39,8 @@ const DeleteDataModal = (props) => {
       isOpen={isOpen}
       placement="center"
       className="font-sans"
-      scrollBehavior="inside">
+      scrollBehavior="inside"
+    >
       <ModalContent className="m-4">
         <ModalHeader>Hapus Data Pendaftar</ModalHeader>
         <ModalBody>
@@ -43,7 +54,8 @@ const DeleteDataModal = (props) => {
             color="primary"
             type="submit"
             disabled={loading}
-            onPress={() => handleDelete(selectedId)}>
+            onPress={() => handleDelete(selectedId)}
+          >
             {loading ? <Spinner size="sm" color="white" /> : 'Hapus Data'}
           </Button>
           <Button
@@ -52,7 +64,8 @@ const DeleteDataModal = (props) => {
             onPress={() => {
               onClose();
             }}
-            disabled={loading}>
+            disabled={loading}
+          >
             Batal
           </Button>
         </ModalFooter>
@@ -61,14 +74,15 @@ const DeleteDataModal = (props) => {
   );
 };
 
-DeleteDataModal.propTypes = {
+DeleteApplicationDataModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onOpenChange: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,
+  fetchResults: PropTypes.func.isRequired,
   selectedId: PropTypes.string.isRequired,
   setSelectedId: PropTypes.func.isRequired,
   mutateDeleteEvent: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
 };
 
-export default DeleteDataModal;
+export default DeleteApplicationDataModal;

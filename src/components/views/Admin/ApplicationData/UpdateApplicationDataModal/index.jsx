@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import useUpdateDataModal from './useUpdateDataModal';
+import useUpdateApplicationDataModal from './useUpdateApplicationDataModal';
 import { useEffect } from 'react';
 import { Controller } from 'react-hook-form';
 import { parseDate } from '@internationalized/date';
@@ -11,18 +11,25 @@ import {
   DrawerHeader,
   Button,
   Input,
+  Spinner,
 } from '@heroui/react';
 
-const UpdateDataModal = (props) => {
-  const { isOpen, onClose, selectedId } = props;
+const extractDate = (datetimeStr) => datetimeStr?.split('T')[0]?.split(' ')[0];
+
+const UpdateApplicationDataModal = (props) => {
+  const { isOpen, onClose, fetchResults, selectedId, setSelectedId } = props;
   const {
     control,
     errors,
     application,
+    success,
+    loading,
     setValue,
+    resetSuccess,
     getApplicationById,
     handleSubmit,
-  } = useUpdateDataModal();
+    handleUpdate,
+  } = useUpdateApplicationDataModal();
 
   useEffect(() => {
     if (selectedId) {
@@ -42,12 +49,21 @@ const UpdateDataModal = (props) => {
       setValue('IPK', application.IPK);
       setValue('college_major', application.college_major);
       setValue('google_drive_link', application.google_drive_link);
-      setValue('start_month', parseDate(application.start_month));
-      setValue('end_month', parseDate(application.end_month));
+      setValue('start_month', parseDate(extractDate(application.start_month)));
+      setValue('end_month', parseDate(extractDate(application.end_month)));
       setValue('CV_score', application.CV_score);
       setValue('motivation_letter_score', application.motivation_letter_score);
     }
   }, [application, setValue]);
+
+  useEffect(() => {
+    if (success) {
+      onClose();
+      setSelectedId('');
+      fetchResults();
+      resetSuccess();
+    }
+  }, [success, onClose, setSelectedId, fetchResults, resetSuccess]);
 
   return (
     <Drawer
@@ -66,7 +82,11 @@ const UpdateDataModal = (props) => {
               Ubah Data
             </DrawerHeader>
             <DrawerBody>
-              <form className="grid grid-cols-1 md:grid-cols-2 gap-6 font-sans">
+              <form
+                id="update-form"
+                className="grid grid-cols-1 md:grid-cols-2 gap-6 font-sans"
+                onSubmit={handleSubmit(handleUpdate)}
+              >
                 <div className="space-y-4">
                   {/* Left section */}
                   <Controller
@@ -297,15 +317,11 @@ const UpdateDataModal = (props) => {
               </form>
             </DrawerBody>
             <DrawerFooter>
+              <Button color="primary" type="submit" form="update-form">
+                {loading ? <Spinner /> : 'Simpan'}
+              </Button>
               <Button color="danger" variant="flat" onPress={onClose}>
                 Batal
-              </Button>
-              <Button
-                color="primary"
-                type="submit"
-                onPress={handleSubmit(() => {})}
-              >
-                Save
               </Button>
             </DrawerFooter>
           </>
@@ -315,12 +331,13 @@ const UpdateDataModal = (props) => {
   );
 };
 
-UpdateDataModal.propTypes = {
+UpdateApplicationDataModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
+  fetchResults: PropTypes.func.isRequired,
   selectedId: PropTypes.string.isRequired,
   setSelectedId: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
 };
 
-export default UpdateDataModal;
+export default UpdateApplicationDataModal;

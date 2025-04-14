@@ -22,7 +22,7 @@ export const getApplications =
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
+        'Authorization': `Bearer ${token}`,
       },
       url: `${import.meta.env.VITE_BACKEND_API}/applications`,
       params: {
@@ -58,7 +58,7 @@ export const getApplication =
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
+        'Authorization': `Bearer ${token}`,
       },
       url: `${import.meta.env.VITE_BACKEND_API}/applications/${id}`,
     };
@@ -66,6 +66,30 @@ export const getApplication =
       setLoading(true);
       const response = await axios.request(config);
       dispatch(setApplication(response.data.data));
+    } catch (error) {
+      toast.error(error?.response?.data?.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+export const updateApplication =
+  (id, data, setLoading, setSuccess) => async (dispatch, getState) => {
+    const { token } = getState().auth;
+
+    let config = {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+      url: `${import.meta.env.VITE_BACKEND_API}/applications/${id}`,
+      data,
+    };
+    try {
+      setLoading(true);
+      await axios.request(config);
+      setSuccess(true);
     } catch (error) {
       toast.error(error?.response?.data?.message);
     } finally {
@@ -81,7 +105,7 @@ export const deleteApplication =
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
+        'Authorization': `Bearer ${token}`,
       },
       url: `${import.meta.env.VITE_BACKEND_API}/applications/${id}`,
     };

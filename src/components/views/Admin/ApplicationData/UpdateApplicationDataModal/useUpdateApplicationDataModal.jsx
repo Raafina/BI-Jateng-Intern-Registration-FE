@@ -1,7 +1,10 @@
 import { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import { getApplication } from '../../../../../redux/actions/applicationActions';
+import {
+  getApplication,
+  updateApplication,
+} from '../../../../../redux/actions/applicationActions';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
@@ -65,13 +68,22 @@ const updateSchema = yup.object().shape({
     .string()
     .url('Harus berupa link valid')
     .required('Link Google Drive wajib diisi'),
-  CV_score: yup.number().required('Skor CV wajib diisi'),
-  motivation_letter_score: yup.number().required('Skor ML wajib diisi'),
+  CV_score: yup
+    .number()
+    .min(0, 'Nilai motivation letter tidak boleh kurang dari 0')
+    .max(100, 'Nilai motivation letter tidak boleh lebih dari 100')
+    .nullable(),
+  motivation_letter_score: yup
+    .number()
+    .min(0, 'Nilai motivation letter tidak boleh kurang dari 0')
+    .max(100, 'Nilai motivation letter tidak boleh lebih dari 100')
+    .nullable(),
 });
 
 const useUpdateDataModal = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
   const { application } = useSelector((state) => state.application);
 
   // get data by id
@@ -91,13 +103,24 @@ const useUpdateDataModal = () => {
     resolver: yupResolver(updateSchema),
   });
 
+  const handleUpdate = (data) => {
+    dispatch(updateApplication(application.id, data, setLoading, setSuccess));
+  };
+
+  const resetSuccess = useCallback(() => {
+    setSuccess(false);
+  }, [setSuccess]);
+
   return {
     control,
     errors,
     loading,
     application,
+    success,
     setValue,
+    resetSuccess,
     handleSubmit,
+    handleUpdate,
     getApplicationById,
   };
 };
