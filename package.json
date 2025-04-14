@@ -10,8 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@heroui/react": "^2.7.5",
+    "@heroui/react": "^2.7.6",
     "@hookform/resolvers": "^3.9.0",
+    "@internationalized/date": "^3.6.0",
     "@reduxjs/toolkit": "^2.2.5",
     "axios": "^1.8.4",
     "framer-motion": "^12.5.0",

@@ -16,7 +16,7 @@ const applicationSlice = createSlice({
       state.applications = action.payload;
     },
     setApplication: (state, action) => {
-      state.applications = action.payload;
+      state.application = action.payload;
     },
   },
 });

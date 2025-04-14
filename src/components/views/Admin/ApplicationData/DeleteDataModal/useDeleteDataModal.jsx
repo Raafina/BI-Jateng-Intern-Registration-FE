@@ -9,7 +9,6 @@ const useDeleteDataModal = () => {
 
   const handleDelete = useCallback(
     (id) => {
-      console.log(id);
       dispatch(deleteApplication(id, setLoading, setSuccess));
     },
     [dispatch]

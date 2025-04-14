@@ -42,14 +42,15 @@ const ApplicationData = () => {
           <p
             className={`inline px-2 py-1 rounded-lg ${
               {
-                humas: 'bg-green-700 text-white',
-                makroprudensial: 'bg-primary text-white',
-                sistem_pembayaran: 'bg-red-700 text-white',
-                internal: 'bg-indigo-400 text-white',
-                pengelolaan_uang_rupiah: 'bg-slate-700 text-white',
-                moneter: 'bg-cyan-500 text-white',
+                'Humas': 'bg-green-700 text-white',
+                'Makroprudensial': 'bg-primary text-white',
+                'Sistem Pembayaran': 'bg-red-700 text-white',
+                'Internal': 'bg-indigo-400 text-white',
+                'Pengelolaan Uang Rupiah': 'bg-slate-700 text-white',
+                'Moneter': 'bg-cyan-500 text-white',
               }[cellValue] || ''
-            }`}>
+            }`}
+          >
             {cellValue}
           </p>
         );
@@ -63,7 +64,8 @@ const ApplicationData = () => {
                 setSelectedId(item.id);
                 console.log(selectedId, 'index');
                 updateDataModal.onOpen(item);
-              }}>
+              }}
+            >
               <FaRegEdit size={15} />
             </button>
             <button
@@ -72,7 +74,8 @@ const ApplicationData = () => {
               onClick={() => {
                 setSelectedId(item.id);
                 deleteDataModal.onOpen(item);
-              }}>
+              }}
+            >
               <FaRegTrashAlt size={15} />
             </button>
           </div>
@@ -85,7 +88,8 @@ const ApplicationData = () => {
   return (
     <DashboardLayout
       title="Hasil Seleksi"
-      description="Halaman ini akan menampilkan hasil seleksi yang telah dilakukan dengan sistem.">
+      description="Halaman ini akan menampilkan hasil seleksi yang telah dilakukan dengan sistem."
+    >
       <TableData
         showDate
         buttonTopContentLabel="Cari Data"
@@ -108,11 +112,14 @@ const ApplicationData = () => {
         setMonth={setMonth}
         setYear={setYear}
       />
-      <UpdateDataModal {...updateDataModal} />
+      <UpdateDataModal
+        {...updateDataModal}
+        selectedId={selectedId}
+        setSelectedId={setSelectedId}
+      />
       <DeleteDataModal
         {...deleteDataModal}
         selectedId={selectedId}
-        fetchResults={fetchResults}
         setSelectedId={setSelectedId}
       />
     </DashboardLayout>

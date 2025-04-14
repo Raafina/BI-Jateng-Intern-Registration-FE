@@ -1,7 +1,7 @@
-// import { useCallback } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
+import { useCallback, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
-// import { getApplication } from '../../../../../redux/actions/applicationActions';
+import { getApplication } from '../../../../../redux/actions/applicationActions';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
@@ -12,19 +12,19 @@ const updateSchema = yup.object().shape({
   phone: yup.string().required('No. HP wajib diisi'),
   intern_category: yup
     .string()
-    .oneOf(['magang_KRS', 'magang_mandiri'], 'Tipe magang tidak valid')
+    .oneOf(['Magang KRS', 'Magang Mandiri'], 'Tipe magang tidak valid')
     .required('Tipe magang wajib diisi'),
   semester: yup.number().min(1, 'Minimal Semester 4').required(),
   division_request: yup
     .string()
     .oneOf(
       [
-        'moneter',
-        'makroprudensial',
-        'sistem_pembayaran',
-        'pengelolaan_uang_rupiah',
-        'humas',
-        'internal',
+        'Moneter',
+        'Makroprudensial',
+        'Sistem Pembayaran',
+        'Pengelolaan Uang Rupiah',
+        'Humas',
+        'Internal',
       ],
       'Bidang Peminatan tidak valid'
     )
@@ -33,7 +33,15 @@ const updateSchema = yup.object().shape({
   college_major: yup
     .string()
     .oneOf(
-      ['akuntansi', 'manajemen', 'IT', 'hukum', 'statistika', 'ilmu_sosial'],
+      [
+        'Ekonomi',
+        'Akuntansi',
+        'Manajemen',
+        'IT',
+        'Hukum',
+        'Statistika',
+        'Ilmu Sosial',
+      ],
       'Jurusan tidak valid'
     )
     .required('Jurusan wajib diisi'),
@@ -49,7 +57,6 @@ const updateSchema = yup.object().shape({
         const start = new Date(this.parent.start_month);
         const maxEnd = new Date(start);
         maxEnd.setMonth(start.getMonth() + 6);
-
         return value <= maxEnd;
       }
     )
@@ -58,14 +65,27 @@ const updateSchema = yup.object().shape({
     .string()
     .url('Harus berupa link valid')
     .required('Link Google Drive wajib diisi'),
+  CV_score: yup.number().required('Skor CV wajib diisi'),
+  motivation_letter_score: yup.number().required('Skor ML wajib diisi'),
 });
 
-const useRegister = () => {
-  // const dispatch = useDispatch();
+const useUpdateDataModal = () => {
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
+  const { application } = useSelector((state) => state.application);
+
+  // get data by id
+  const getApplicationById = useCallback(
+    (id) => {
+      dispatch(getApplication(id, setLoading));
+    },
+    [dispatch]
+  );
 
   const {
     control,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(updateSchema),
@@ -74,8 +94,12 @@ const useRegister = () => {
   return {
     control,
     errors,
+    loading,
+    application,
+    setValue,
     handleSubmit,
+    getApplicationById,
   };
 };
 
-export default useRegister;
+export default useUpdateDataModal;

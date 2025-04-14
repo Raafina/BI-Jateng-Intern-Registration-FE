@@ -40,20 +40,20 @@ const DeleteDataModal = (props) => {
         </ModalBody>
         <ModalFooter>
           <Button
+            color="primary"
+            type="submit"
+            disabled={loading}
+            onPress={() => handleDelete(selectedId)}>
+            {loading ? <Spinner size="sm" color="white" /> : 'Hapus Data'}
+          </Button>
+          <Button
             color="danger"
             variant="flat"
             onPress={() => {
               onClose();
             }}
             disabled={loading}>
-            Cancel
-          </Button>
-          <Button
-            color="primary"
-            type="submit"
-            disabled={loading}
-            onPress={() => handleDelete(selectedId)}>
-            {loading ? <Spinner size="sm" color="white" /> : 'Hapus Data'}
+            Batal
           </Button>
         </ModalFooter>
       </ModalContent>

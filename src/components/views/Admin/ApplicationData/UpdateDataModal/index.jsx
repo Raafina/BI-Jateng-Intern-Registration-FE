@@ -1,3 +1,8 @@
+import PropTypes from 'prop-types';
+import useUpdateDataModal from './useUpdateDataModal';
+import { useEffect } from 'react';
+import { Controller } from 'react-hook-form';
+import { parseDate } from '@internationalized/date';
 import {
   Drawer,
   DrawerBody,
@@ -6,22 +11,44 @@ import {
   DrawerHeader,
   Button,
   Input,
-  Select,
-  SelectItem,
-  DatePicker,
 } from '@heroui/react';
-import PropTypes from 'prop-types';
-import { Controller } from 'react-hook-form';
-import useUpdateDataModal from './useUpdateDataModal';
-import {
-  COLLEGE_MAJOR,
-  INTERN_CATEGORY,
-  DIVISION_REQUEST,
-} from '../../../Register/Register.constant';
 
 const UpdateDataModal = (props) => {
-  const { isOpen, onClose } = props;
-  const { control, errors, handleSubmit } = useUpdateDataModal();
+  const { isOpen, onClose, selectedId } = props;
+  const {
+    control,
+    errors,
+    application,
+    setValue,
+    getApplicationById,
+    handleSubmit,
+  } = useUpdateDataModal();
+
+  useEffect(() => {
+    if (selectedId) {
+      getApplicationById(selectedId);
+    }
+  }, [selectedId, getApplicationById]);
+
+  useEffect(() => {
+    if (application) {
+      setValue('full_name', application.full_name);
+      setValue('email', application.email);
+      setValue('phone', application.phone);
+      setValue('university', application.university);
+      setValue('intern_category', application.intern_category);
+      setValue('semester', application.semester);
+      setValue('division_request', application.division_request);
+      setValue('IPK', application.IPK);
+      setValue('college_major', application.college_major);
+      setValue('google_drive_link', application.google_drive_link);
+      setValue('start_month', parseDate(application.start_month));
+      setValue('end_month', parseDate(application.end_month));
+      setValue('CV_score', application.CV_score);
+      setValue('motivation_letter_score', application.motivation_letter_score);
+    }
+  }, [application, setValue]);
+
   return (
     <Drawer
       isOpen={isOpen}
@@ -30,7 +57,8 @@ const UpdateDataModal = (props) => {
       size="md"
       className="font-sans"
       backdrop="opaque"
-      isDismissable={true}>
+      isDismissable={true}
+    >
       <DrawerContent>
         {(onClose) => (
           <>
@@ -51,6 +79,7 @@ const UpdateDataModal = (props) => {
                         label="Nama Lengkap"
                         variant="faded"
                         autoComplete="off"
+                        disabled
                         isInvalid={errors.full_name !== undefined}
                         errorMessage={errors.full_name?.message}
                       />
@@ -66,6 +95,7 @@ const UpdateDataModal = (props) => {
                         label="Email"
                         variant="faded"
                         autoComplete="off"
+                        disabled
                         isInvalid={errors.email !== undefined}
                         errorMessage={errors.email?.message}
                       />
@@ -81,6 +111,7 @@ const UpdateDataModal = (props) => {
                         label="Phone"
                         variant="faded"
                         autoComplete="off"
+                        disabled
                         isInvalid={errors.phone !== undefined}
                         errorMessage={errors.phone?.message}
                       />
@@ -96,6 +127,7 @@ const UpdateDataModal = (props) => {
                         label="Universitas"
                         variant="faded"
                         autoComplete="off"
+                        disabled
                         isInvalid={errors.university !== undefined}
                         errorMessage={errors.university?.message}
                       />
@@ -105,19 +137,15 @@ const UpdateDataModal = (props) => {
                     name="college_major"
                     control={control}
                     render={({ field }) => (
-                      <Select
+                      <Input
                         {...field}
                         label="Jurusan"
                         variant="faded"
                         autoComplete="off"
+                        disabled
                         isInvalid={errors.college_major !== undefined}
-                        errorMessage={errors.college_major?.message}>
-                        {COLLEGE_MAJOR.map((item) => (
-                          <SelectItem key={item.value} value={item.value}>
-                            {item.label}
-                          </SelectItem>
-                        ))}
-                      </Select>
+                        errorMessage={errors.college_major?.message}
+                      />
                     )}
                   />
                   <Controller
@@ -130,8 +158,25 @@ const UpdateDataModal = (props) => {
                         label="Semester"
                         variant="faded"
                         autoComplete="off"
+                        disabled
                         isInvalid={errors.semester !== undefined}
                         errorMessage={errors.semester?.message}
+                      />
+                    )}
+                  />
+                  <Controller
+                    name="IPK"
+                    control={control}
+                    render={({ field }) => (
+                      <Input
+                        {...field}
+                        type="number"
+                        label="IPK"
+                        variant="faded"
+                        autoComplete="off"
+                        disabled
+                        isInvalid={errors.IPK !== undefined}
+                        errorMessage={errors.IPK?.message}
                       />
                     )}
                   />
@@ -140,67 +185,45 @@ const UpdateDataModal = (props) => {
                 <div>
                   <div className="space-y-4">
                     <Controller
-                      name="IPK"
+                      name="intern_category"
                       control={control}
                       render={({ field }) => (
                         <Input
                           {...field}
-                          type="number"
-                          label="IPK"
-                          variant="faded"
-                          autoComplete="off"
-                          isInvalid={errors.IPK !== undefined}
-                          errorMessage={errors.IPK?.message}
-                        />
-                      )}
-                    />
-                    <Controller
-                      name="intern_category"
-                      control={control}
-                      render={({ field }) => (
-                        <Select
-                          {...field}
                           label="Kategori Magang"
                           variant="faded"
                           autoComplete="off"
+                          disabled
                           isInvalid={errors.intern_category !== undefined}
-                          errorMessage={errors.intern_category?.message}>
-                          {INTERN_CATEGORY.map((item) => (
-                            <SelectItem key={item.value} value={item.value}>
-                              {item.label}
-                            </SelectItem>
-                          ))}
-                        </Select>
+                          errorMessage={errors.intern_category?.message}
+                        />
                       )}
                     />
                     <Controller
                       name="division_request"
                       control={control}
                       render={({ field }) => (
-                        <Select
+                        <Input
                           {...field}
                           label="Bidang Kerja"
                           variant="faded"
                           autoComplete="off"
+                          disabled
                           isInvalid={errors.division_request !== undefined}
-                          errorMessage={errors.division_request?.message}>
-                          {DIVISION_REQUEST.map((item) => (
-                            <SelectItem key={item.value} value={item.value}>
-                              {item.label}
-                            </SelectItem>
-                          ))}
-                        </Select>
+                          errorMessage={errors.division_request?.message}
+                        />
                       )}
                     />
                     <Controller
                       name="start_month"
                       control={control}
                       render={({ field }) => (
-                        <DatePicker
+                        <Input
                           {...field}
                           label="Tanggal Mulai Magang"
                           variant="faded"
                           autoComplete="off"
+                          disabled
                           isInvalid={errors.start_month !== undefined}
                           errorMessage={errors.start_month?.message}
                         />
@@ -210,11 +233,12 @@ const UpdateDataModal = (props) => {
                       name="end_month"
                       control={control}
                       render={({ field }) => (
-                        <DatePicker
+                        <Input
                           {...field}
                           label="Tanggal Selesai Magang"
                           variant="faded"
                           autoComplete="off"
+                          disabled
                           isInvalid={errors.end_month !== undefined}
                           errorMessage={errors.end_month?.message}
                         />
@@ -230,27 +254,59 @@ const UpdateDataModal = (props) => {
                           label="Link Pemberkasan"
                           variant="faded"
                           autoComplete="off"
+                          disabled
                           isInvalid={errors.google_drive_link !== undefined}
                           errorMessage={errors.google_drive_link?.message}
                         />
                       )}
                     />
+                    <Controller
+                      name="CV_score"
+                      control={control}
+                      render={({ field }) => (
+                        <Input
+                          {...field}
+                          type="input"
+                          label="Skor CV"
+                          variant="faded"
+                          autoComplete="off"
+                          isInvalid={errors.CV_score !== undefined}
+                          errorMessage={errors.CV_score?.message}
+                        />
+                      )}
+                    />
+                    <Controller
+                      name="motivation_letter_score"
+                      control={control}
+                      render={({ field }) => (
+                        <Input
+                          {...field}
+                          type="input"
+                          label="Skor Motivattion Letter"
+                          variant="faded"
+                          autoComplete="off"
+                          isInvalid={
+                            errors.motivation_letter_score !== undefined
+                          }
+                          errorMessage={errors.motivation_letter_score?.message}
+                        />
+                      )}
+                    />
                   </div>
                 </div>
-                <Button
-                  color="primary"
-                  type="submit"
-                  onPress={handleSubmit(() => {})}>
-                  Save
-                </Button>
               </form>
             </DrawerBody>
             <DrawerFooter>
-              <div className="flex justify-between w-full">
-                <Button color="danger" variant="flat" onPress={onClose}>
-                  Batal
-                </Button>
-              </div>
+              <Button color="danger" variant="flat" onPress={onClose}>
+                Batal
+              </Button>
+              <Button
+                color="primary"
+                type="submit"
+                onPress={handleSubmit(() => {})}
+              >
+                Save
+              </Button>
             </DrawerFooter>
           </>
         )}
@@ -262,6 +318,9 @@ const UpdateDataModal = (props) => {
 UpdateDataModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
+  selectedId: PropTypes.string.isRequired,
+  setSelectedId: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 export default UpdateDataModal;
