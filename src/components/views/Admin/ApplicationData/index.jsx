@@ -24,6 +24,7 @@ const ApplicationData = () => {
     fetchResults,
     handlePageChange,
     handleSearch,
+    handleClearSearch,
   } = useApplicationData();
 
   const applicationDataModal = useDisclosure();
@@ -31,7 +32,7 @@ const ApplicationData = () => {
   const deleteApplicationDataModal = useDisclosure();
 
   useEffect(() => {
-    fetchResults(1);
+    fetchResults(currentPage);
   }, [month, year, currentPage, fetchResults]);
 
   const renderCell = (item, columnKey) => {
@@ -104,6 +105,7 @@ const ApplicationData = () => {
         onClickButtonTopContentSecond={updateApplicationDataModal.onOpen}
         onChangePage={handlePageChange}
         onChangeSearch={handleSearch}
+        onClearSearch={handleClearSearch}
       />
 
       <ApplicationDataModal

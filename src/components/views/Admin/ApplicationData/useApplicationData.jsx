@@ -10,7 +10,6 @@ export const useResultData = () => {
   const [loading, setLoading] = useState(false);
   const [month, setMonth] = useState('08');
   const [year, setYear] = useState('2025');
-  const [search, setSearch] = useState('');
   const [selectedId, setSelectedId] = useState('');
 
   const dispatch = useDispatch();
@@ -21,12 +20,12 @@ export const useResultData = () => {
   );
 
   const fetchResults = useCallback(
-    (page = 1, searchTerm = '') => {
+    (page = 1, search = '') => {
       dispatch(
         getApplications(
           month,
           year,
-          searchTerm,
+          search,
           page,
           setTotalPages,
           setTotalItems,
@@ -34,18 +33,20 @@ export const useResultData = () => {
         )
       );
     },
-    [dispatch, month, year, setTotalPages, setTotalItems]
+    [month, year, setTotalPages, setTotalItems, dispatch]
   );
 
   const handleSearch = (e) => {
-    setSearch(e.target.value);
+    const search = e.target.value;
+
     debounce(() => {
+      setCurrentPage(1);
       fetchResults(1, search);
     }, 1000);
   };
 
   const handleClearSearch = () => {
-    setSearch('');
+    setCurrentPage(1);
     fetchResults(1);
   };
 

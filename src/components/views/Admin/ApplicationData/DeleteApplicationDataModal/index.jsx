@@ -81,7 +81,6 @@ DeleteApplicationDataModal.propTypes = {
   fetchResults: PropTypes.func.isRequired,
   selectedId: PropTypes.string.isRequired,
   setSelectedId: PropTypes.func.isRequired,
-  mutateDeleteEvent: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
 };
 

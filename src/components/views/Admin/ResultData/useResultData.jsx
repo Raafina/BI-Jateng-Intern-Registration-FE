@@ -10,7 +10,6 @@ export const useResultData = () => {
   const [loading, setLoading] = useState(false);
   const [month, setMonth] = useState('08');
   const [year, setYear] = useState('2025');
-  const [search, setSearch] = useState('');
 
   const dispatch = useDispatch();
   const debounce = useDebounce();
@@ -34,14 +33,16 @@ export const useResultData = () => {
   );
 
   const handleSearch = (e) => {
-    setSearch(e.target.value);
+    const search = e.target.value;
+
     debounce(() => {
+      setCurrentPage(1);
       fetchResults(1, search);
     }, 1000);
   };
 
   const handleClearSearch = () => {
-    setSearch('');
+    setCurrentPage(1);
     fetchResults(1);
   };
 
