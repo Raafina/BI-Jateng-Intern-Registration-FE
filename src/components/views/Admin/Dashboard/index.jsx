@@ -1,12 +1,8 @@
-import DashboardLayout from '../../../Layouts/DashboardLayout';
-
 const Dashboard = () => {
   return (
-    <>
-      <DashboardLayout
-        title="Dashboard"
-        description="Dashboard"></DashboardLayout>
-    </>
+    <section>
+      <h1>Dashboard</h1>
+    </section>
   );
 };
 

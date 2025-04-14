@@ -1,5 +1,5 @@
-import DashboardLayout from '../../../Layouts/DashboardLayout';
 import TableData from '../../../UI/TableData';
+import PropTypes from 'prop-types';
 import { useDisclosure } from '@heroui/react';
 import { useEffect } from 'react';
 import { COLUMN_LISTS_RESULT_DATA } from './ResultData.constant';
@@ -42,7 +42,8 @@ const ResultData = () => {
                 pengelolaan_uang_rupiah: 'bg-slate-700 text-white',
                 moneter: 'bg-cyan-500 text-white',
               }[cellValue] || ''
-            }`}>
+            }`}
+          >
             {cellValue}
           </p>
         );
@@ -52,9 +53,7 @@ const ResultData = () => {
   };
 
   return (
-    <DashboardLayout
-      title="Hasil Seleksi"
-      description="Halaman ini akan menampilkan hasil seleksi yang telah dilakukan dengan sistem.">
+    <section>
       <TableData
         showDate
         buttonTopContentLabel="Cari Data"
@@ -69,14 +68,18 @@ const ResultData = () => {
         onChangePage={handlePageChange}
         onChangeSearch={handleSearch}
       />
-
       <SearchResultDataModal
         {...searchResultDataModal}
         setMonth={setMonth}
         setYear={setYear}
       />
-    </DashboardLayout>
+    </section>
   );
+};
+
+ResultData.propTypes = {
+  month: PropTypes.string,
+  year: PropTypes.string,
 };
 
 export default ResultData;

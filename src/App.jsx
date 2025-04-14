@@ -9,6 +9,7 @@ import Register from './pages/Register';
 import Dashboard from './pages/Admin/Dashboard';
 import ApplicationDataPage from './pages/Admin/ApplicationData';
 import ResultDataPage from './pages/Admin/ResultData';
+import WeightDataPage from './pages/Admin/WeightData';
 import NotFound from './pages/404';
 
 import NonProtected from './components/middlewares/NonProtected';
@@ -62,6 +63,14 @@ const router = createBrowserRouter([
     element: (
       <Protected>
         <ResultDataPage />
+      </Protected>
+    ),
+  },
+  {
+    path: '/bobot',
+    element: (
+      <Protected>
+        <WeightDataPage />
       </Protected>
     ),
   },

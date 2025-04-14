@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { useDisclosure } from '@heroui/react';
 import { COLUMN_LISTS_APPLICATION_DATA } from '../ApplicationData/ApplicationData.constant';
 import { FaRegEdit, FaRegTrashAlt } from 'react-icons/fa';
-import DashboardLayout from '../../../Layouts/DashboardLayout';
 import TableData from '../../../UI/TableData';
 import useApplicationData from './useApplicationData';
 import ApplicationDataModal from './ApplicationDataModal';
@@ -57,10 +56,10 @@ const ApplicationData = () => {
         );
       case 'actions':
         return (
-          <div className="flex justify-center gap-2">
+          <div className="flex justify-center items-center gap-2">
             <button
               type="button"
-              className="text-blue bg-transparent hover:bg-transparent"
+              className="bg-primary text-white p-2 rounded-xl hover:bg-opacity-80"
               onClick={() => {
                 setSelectedId(item.id);
                 updateApplicationDataModal.onOpen(item);
@@ -70,7 +69,7 @@ const ApplicationData = () => {
             </button>
             <button
               type="button"
-              className="text-red-600 bg-transparent hover:bg-transparent"
+              className="bg-red-600 text-white p-2 rounded-xl hover:bg-opacity-80"
               onClick={() => {
                 setSelectedId(item.id);
                 deleteApplicationDataModal.onOpen(item);
@@ -86,15 +85,7 @@ const ApplicationData = () => {
   };
 
   return (
-    <DashboardLayout
-      title={'Data Pendaftar Periode  ' + month + '/' + year}
-      description={
-        'Halaman ini akan menampilkan data pendaftar untuk periode ' +
-        month +
-        '/' +
-        year
-      }
-    >
+    <section>
       <TableData
         showDate
         buttonTopContentLabel="Cari Data"
@@ -130,7 +121,7 @@ const ApplicationData = () => {
         selectedId={selectedId}
         setSelectedId={setSelectedId}
       />
-    </DashboardLayout>
+    </section>
   );
 };
 

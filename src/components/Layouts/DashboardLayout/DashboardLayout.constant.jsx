@@ -1,4 +1,4 @@
-import { CiStar, CiViewList, CiGrid41 } from 'react-icons/ci';
+import { CiStar, CiViewList, CiGrid41, CiMicrochip } from 'react-icons/ci';
 
 const SIDEBAR_ADMIN = [
   {
@@ -6,6 +6,12 @@ const SIDEBAR_ADMIN = [
     label: 'Beranda',
     href: '/beranda',
     icon: <CiGrid41 />,
+  },
+  {
+    key: 'bobot',
+    label: 'Bobot',
+    href: '/bobot',
+    icon: <CiMicrochip />,
   },
   {
     key: 'category',
