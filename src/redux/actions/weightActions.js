@@ -17,7 +17,7 @@ export const getWeights =
       params: {
         page: currentPage,
         limit: 10,
-        sort: 'asc',
+        sort: 'desc',
         search: search,
       },
     };
@@ -32,6 +32,31 @@ export const getWeights =
       toast.error(error?.response?.data?.message);
       dispatch(setWeights([]));
       setTotalPages(0);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+export const addWeight =
+  (data, setLoading, setSuccess) => async (dispatch, getState) => {
+    const { token } = getState().auth;
+
+    let config = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+      url: `${import.meta.env.VITE_BACKEND_API}/weights`,
+
+      data,
+    };
+    try {
+      setLoading(true);
+      await axios.request(config);
+      setSuccess(true);
+    } catch (error) {
+      toast.error(error?.response?.data?.message);
     } finally {
       setLoading(false);
     }

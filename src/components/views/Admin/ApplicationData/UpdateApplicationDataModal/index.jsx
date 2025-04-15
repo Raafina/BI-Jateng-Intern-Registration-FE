@@ -83,7 +83,7 @@ const UpdateApplicationDataModal = (props) => {
             </DrawerHeader>
             <DrawerBody>
               <form
-                id="update-form"
+                id="update-application"
                 className="grid grid-cols-1 md:grid-cols-2 gap-6 font-sans"
                 onSubmit={handleSubmit(handleUpdate)}
               >
@@ -317,7 +317,7 @@ const UpdateApplicationDataModal = (props) => {
               </form>
             </DrawerBody>
             <DrawerFooter>
-              <Button color="primary" type="submit" form="update-form">
+              <Button color="primary" type="submit" form="update-application">
                 {loading ? <Spinner /> : 'Simpan'}
               </Button>
               <Button color="danger" variant="flat" onPress={onClose}>
