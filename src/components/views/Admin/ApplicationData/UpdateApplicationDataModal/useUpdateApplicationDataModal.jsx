@@ -8,7 +8,7 @@ import {
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
-const updateSchema = yup.object().shape({
+const updateApplicationSchema = yup.object().shape({
   full_name: yup.string().required('Nama lengkap wajib diisi'),
   university: yup.string().required('Asal Universitas wajib diisi'),
   email: yup.string().email('Email tidak valid').required('Email wajib diisi'),
@@ -80,7 +80,7 @@ const updateSchema = yup.object().shape({
     .nullable(),
 });
 
-const useUpdateDataModal = () => {
+const useUpdateApplicationDataModal = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -97,10 +97,10 @@ const useUpdateDataModal = () => {
   const {
     control,
     handleSubmit,
-    setValue,
+    reset,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(updateSchema),
+    resolver: yupResolver(updateApplicationSchema),
   });
 
   const handleUpdate = (data) => {
@@ -117,7 +117,7 @@ const useUpdateDataModal = () => {
     loading,
     application,
     success,
-    setValue,
+    reset,
     resetSuccess,
     handleSubmit,
     handleUpdate,
@@ -125,4 +125,4 @@ const useUpdateDataModal = () => {
   };
 };
 
-export default useUpdateDataModal;
+export default useUpdateApplicationDataModal;

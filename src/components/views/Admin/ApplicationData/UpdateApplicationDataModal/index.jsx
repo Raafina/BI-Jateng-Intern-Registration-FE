@@ -24,7 +24,7 @@ const UpdateApplicationDataModal = (props) => {
     application,
     success,
     loading,
-    setValue,
+    reset,
     resetSuccess,
     getApplicationById,
     handleSubmit,
@@ -39,22 +39,24 @@ const UpdateApplicationDataModal = (props) => {
 
   useEffect(() => {
     if (application) {
-      setValue('full_name', application.full_name);
-      setValue('email', application.email);
-      setValue('phone', application.phone);
-      setValue('university', application.university);
-      setValue('intern_category', application.intern_category);
-      setValue('semester', application.semester);
-      setValue('division_request', application.division_request);
-      setValue('IPK', application.IPK);
-      setValue('college_major', application.college_major);
-      setValue('google_drive_link', application.google_drive_link);
-      setValue('start_month', parseDate(extractDate(application.start_month)));
-      setValue('end_month', parseDate(extractDate(application.end_month)));
-      setValue('CV_score', application.CV_score);
-      setValue('motivation_letter_score', application.motivation_letter_score);
+      reset({
+        full_name: application.full_name || '',
+        email: application.email || '',
+        phone: application.phone || '',
+        university: application.university || '',
+        intern_category: application.intern_category || '',
+        semester: application.semester || '',
+        division_request: application.division_request || '',
+        IPK: application.IPK || '',
+        college_major: application.college_major || '',
+        google_drive_link: application.google_drive_link || '',
+        start_month: parseDate(extractDate(application.start_month)) || '',
+        end_month: parseDate(extractDate(application.end_month)) || '',
+        CV_score: application.CV_score || '',
+        motivation_letter_score: application.motivation_letter_score || '',
+      });
     }
-  }, [application, setValue]);
+  }, [application, reset]);
 
   useEffect(() => {
     if (success) {
@@ -79,7 +81,7 @@ const UpdateApplicationDataModal = (props) => {
         {(onClose) => (
           <>
             <DrawerHeader className="flex flex-col gap-1">
-              Ubah Data
+              Ubah Data Pendaftar
             </DrawerHeader>
             <DrawerBody>
               <form

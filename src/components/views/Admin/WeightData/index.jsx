@@ -4,6 +4,8 @@ import { COLUMN_LIST_WEIGHT_DATA } from './WeightData.constant';
 import { FaRegEdit, FaRegTrashAlt } from 'react-icons/fa';
 import TableData from '../../../UI/TableData';
 import AddWeightDataModal from './AddWeightDataModal';
+import DeleteWeightDataModal from './DeleteWeightDataModal';
+import UpdateWeightDataModal from './UpdateWeightDataModal';
 import useWeightData from './useWeightData';
 const WeightData = () => {
   const {
@@ -11,8 +13,8 @@ const WeightData = () => {
     totalPages,
     currentPage,
     loading,
-    // selectedId,
-    // setSelectedId,
+    selectedId,
+    setSelectedId,
     fetchResults,
     handlePageChange,
     handleSearch,
@@ -20,6 +22,8 @@ const WeightData = () => {
   } = useWeightData();
 
   const addWeightDataModal = useDisclosure();
+  const updateWeightDataModal = useDisclosure();
+  const deleteWeightDataModal = useDisclosure();
 
   useEffect(() => {
     fetchResults(currentPage);
@@ -35,8 +39,8 @@ const WeightData = () => {
               type="button"
               className="bg-primary text-white p-2 rounded-xl hover:bg-opacity-80"
               onClick={() => {
-                // setSelectedId(item.id);
-                // updateApplicationDataModal.onOpen(item);
+                setSelectedId(item.id);
+                updateWeightDataModal.onOpen(item);
               }}
             >
               <FaRegEdit size={15} />
@@ -45,8 +49,8 @@ const WeightData = () => {
               type="button"
               className="bg-red-600 text-white p-2 rounded-xl hover:bg-opacity-80"
               onClick={() => {
-                // setSelectedId(item.id);
-                // deleteApplicationDataModal.onOpen(item);
+                setSelectedId(item.id);
+                deleteWeightDataModal.onOpen(item);
               }}
             >
               <FaRegTrashAlt size={15} />
@@ -78,6 +82,18 @@ const WeightData = () => {
       />
 
       <AddWeightDataModal {...addWeightDataModal} fetchResults={fetchResults} />
+      <UpdateWeightDataModal
+        {...updateWeightDataModal}
+        selectedId={selectedId}
+        setSelectedId={setSelectedId}
+        fetchResults={fetchResults}
+      />
+      <DeleteWeightDataModal
+        {...deleteWeightDataModal}
+        selectedId={selectedId}
+        setSelectedId={setSelectedId}
+        fetchResults={fetchResults}
+      />
     </section>
   );
 };

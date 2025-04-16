@@ -56,7 +56,7 @@ const ApplicationData = () => {
         );
       case 'actions':
         return (
-          <div className="flex items-center gap-2">
+          <div className="flex justify-center items-center gap-2">
             <button
               type="button"
               className="bg-primary text-white p-2 rounded-xl hover:bg-opacity-80"

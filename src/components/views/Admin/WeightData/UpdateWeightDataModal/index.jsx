@@ -1,59 +1,81 @@
 import PropTypes from 'prop-types';
+import useUpdateWeightDataModal from './useUpdateWeightDataModal';
+import { useEffect } from 'react';
+import { Controller } from 'react-hook-form';
 import {
-  Button,
-  Input,
   Modal,
   ModalBody,
   ModalContent,
   ModalFooter,
   ModalHeader,
-  //   Spinner,
+  Button,
+  Input,
+  Spinner,
 } from '@heroui/react';
-import { Controller } from 'react-hook-form';
-import useAddWeightDataModal from './useAddWeightDataModal';
-import { useEffect } from 'react';
 
-const AddWeightDataModal = (props) => {
-  const { isOpen, onClose, onOpenChange, fetchResults } = props;
-
+const UpdateWeightDataModal = (props) => {
+  const { isOpen, onClose, fetchResults, selectedId, setSelectedId } = props;
   const {
     control,
     errors,
+    weight,
     success,
     loading,
+    // setValue,
     reset,
-    resetSucces,
+    resetSuccess,
+    getWeightById,
     handleSubmit,
-    handleAddWeight,
-    handleCloseModal,
-  } = useAddWeightDataModal();
+    handleUpdate,
+  } = useUpdateWeightDataModal();
+
+  useEffect(() => {
+    if (selectedId) {
+      getWeightById(selectedId);
+    }
+  }, [selectedId, getWeightById]);
+
+  useEffect(() => {
+    if (weight) {
+      reset({
+        name: weight.name || '',
+        IPK_weight: weight.IPK_weight || 0,
+        intern_category_weight: weight.intern_category_weight || 0,
+        college_major_weight: weight.college_major_weight || 0,
+        CV_score_weight: weight.CV_score_weight || 0,
+        motivation_letter_score_weight:
+          weight.motivation_letter_score_weight || 0,
+      });
+    }
+  }, [weight, reset]);
 
   useEffect(() => {
     if (success) {
-      fetchResults();
-      reset();
       onClose();
-      resetSucces();
+      setSelectedId('');
+      fetchResults();
+      resetSuccess();
     }
-  }, [success, onClose, fetchResults, loading, resetSucces, reset]);
+  }, [success, onClose, setSelectedId, fetchResults, resetSuccess]);
 
   return (
     <Modal
-      onOpenChange={onOpenChange}
       isOpen={isOpen}
       placement="center"
       scrollBehavior="inside"
       onClose={() => onClose()}
     >
       <ModalContent className="m-4 font-sans">
-        <ModalHeader>Tambah Data Bobot</ModalHeader>
+        <ModalHeader className="flex flex-col gap-1">
+          Ubah Data Bobot
+        </ModalHeader>
         <ModalBody>
           {errors?.totalWeight && (
             <p className="text-red-500 text-sm bg-red-100 px-2 py-3 rounded-lg">
               {errors.totalWeight.message}
             </p>
           )}
-          <form onSubmit={handleSubmit(handleAddWeight)} id="add-weight">
+          <form onSubmit={handleSubmit(handleUpdate)} id="update-weight">
             <div className="space-y-4">
               <Controller
                 name="name"
@@ -153,14 +175,10 @@ const AddWeightDataModal = (props) => {
           </form>
         </ModalBody>
         <ModalFooter>
-          <Button color="primary" type="submit" form="add-weight">
-            {loading ? 'Menambahkan...' : 'Tambah'}
+          <Button color="primary" type="submit" form="update-weight">
+            {loading ? <Spinner /> : 'Simpan'}
           </Button>
-          <Button
-            color="danger"
-            variant="flat"
-            onPress={() => handleCloseModal(onClose)}
-          >
+          <Button color="danger" variant="flat" onPress={onClose}>
             Batal
           </Button>
         </ModalFooter>
@@ -169,11 +187,13 @@ const AddWeightDataModal = (props) => {
   );
 };
 
-AddWeightDataModal.propTypes = {
-  isOpen: PropTypes.bool,
-  onClose: PropTypes.func,
-  fetchResults: PropTypes.func,
-  onOpenChange: PropTypes.func,
+UpdateWeightDataModal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  fetchResults: PropTypes.func.isRequired,
+  selectedId: PropTypes.string.isRequired,
+  setSelectedId: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
-export default AddWeightDataModal;
+export default UpdateWeightDataModal;
