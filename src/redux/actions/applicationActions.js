@@ -90,6 +90,7 @@ export const updateApplication =
       setLoading(true);
       await axios.request(config);
       setSuccess(true);
+      toast.success('Data pendaftar berhasil diubah');
     } catch (error) {
       toast.error(error?.response?.data?.message);
     } finally {
@@ -113,6 +114,7 @@ export const deleteApplication =
       setLoading(true);
       await axios.request(config);
       setSuccess(true);
+      toast.success('Data pendaftar berhasil dihapus');
     } catch (error) {
       toast.error(error?.response?.data?.message);
     } finally {

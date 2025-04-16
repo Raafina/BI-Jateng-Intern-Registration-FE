@@ -55,6 +55,7 @@ export const addWeight =
       setLoading(true);
       await axios.request(config);
       setSuccess(true);
+      toast.success('Data bobot berhasil ditambahkan');
     } catch (error) {
       toast.error(error?.response?.data?.message);
     } finally {
