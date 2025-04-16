@@ -25,14 +25,16 @@ const RegisterForm = () => {
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, ease: 'easeOut' }}
-        className="py-6 md:py-14 flex flex-col items-center justify-center px-4 max-w-4xl mx-auto">
+        className="py-6 md:py-14 flex flex-col items-center justify-center px-4 max-w-4xl mx-auto"
+      >
         <Card className="w-full border-2 shadow-lg border-slate-200 bg-slate-50 p-4 ">
           <CardBody>
             <motion.h1
               className="text-3xl md:text-4xl leading-tight text-center mb-5"
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, ease: 'easeOut', delay: 0.2 }}>
+              transition={{ duration: 1, ease: 'easeOut', delay: 0.2 }}
+            >
               Formulir Pendaftaran
             </motion.h1>
             <form className="grid grid-cols-1 md:grid-cols-2 gap-6 font-sans overflow-hidden">
@@ -40,7 +42,8 @@ const RegisterForm = () => {
                 className="space-y-4"
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 1, ease: 'easeOut', delay: 0.3 }}>
+                transition={{ duration: 1, ease: 'easeOut', delay: 0.3 }}
+              >
                 {/* Left section */}
                 <Controller
                   name="full_name"
@@ -79,7 +82,7 @@ const RegisterForm = () => {
                     <Input
                       {...field}
                       type="phone"
-                      label="Phone"
+                      label="Nomor Telepon"
                       variant="faded"
                       autoComplete="off"
                       isInvalid={errors.phone !== undefined}
@@ -112,7 +115,8 @@ const RegisterForm = () => {
                       variant="faded"
                       autoComplete="off"
                       isInvalid={errors.college_major !== undefined}
-                      errorMessage={errors.college_major?.message}>
+                      errorMessage={errors.college_major?.message}
+                    >
                       {COLLEGE_MAJOR.map((item) => (
                         <SelectItem key={item.value} value={item.value}>
                           {item.label}
@@ -142,7 +146,8 @@ const RegisterForm = () => {
               <motion.div
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 1, ease: 'easeOut', delay: 0.3 }}>
+                transition={{ duration: 1, ease: 'easeOut', delay: 0.3 }}
+              >
                 <div className="space-y-4">
                   <Controller
                     name="IPK"
@@ -169,7 +174,8 @@ const RegisterForm = () => {
                         variant="faded"
                         autoComplete="off"
                         isInvalid={errors.intern_category !== undefined}
-                        errorMessage={errors.intern_category?.message}>
+                        errorMessage={errors.intern_category?.message}
+                      >
                         {INTERN_CATEGORY.map((item) => (
                           <SelectItem key={item.value} value={item.value}>
                             {item.label}
@@ -188,7 +194,8 @@ const RegisterForm = () => {
                         variant="faded"
                         autoComplete="off"
                         isInvalid={errors.division_request !== undefined}
-                        errorMessage={errors.division_request?.message}>
+                        errorMessage={errors.division_request?.message}
+                      >
                         {DIVISION_REQUEST.map((item) => (
                           <SelectItem key={item.value} value={item.value}>
                             {item.label}
@@ -247,14 +254,16 @@ const RegisterForm = () => {
                   className="flex justify-center md:justify-end mt-6"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.8, ease: 'easeOut', delay: 0.5 }}>
+                  transition={{ duration: 0.8, ease: 'easeOut', delay: 0.5 }}
+                >
                   <Button
                     radius="full"
                     target="_blank"
                     color="primary"
                     className="font-inter px-8 w-full md:w-0  text-white "
                     type="submit"
-                    onPress={handleSubmit(() => {})}>
+                    onPress={handleSubmit(() => {})}
+                  >
                     Daftar
                   </Button>
                 </motion.div>
