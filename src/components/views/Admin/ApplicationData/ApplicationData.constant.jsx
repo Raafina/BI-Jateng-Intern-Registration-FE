@@ -28,7 +28,7 @@ const COLUMN_LISTS_APPLICATION_DATA = [
     uid: 'motivation_letter_score',
   },
   {
-    name: 'ACTION',
+    name: 'AKSI',
     uid: 'actions',
   },
 ];
