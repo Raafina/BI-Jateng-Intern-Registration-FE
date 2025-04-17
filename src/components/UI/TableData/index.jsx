@@ -22,7 +22,9 @@ const TableData = (props) => {
     isLoading,
     renderCell,
     onClickButtonTopContent,
+    onClickButtonTopContentSecond,
     buttonTopContentLabel,
+    buttonTopContentLabelSecond,
     showSearch = true,
     totalPages,
     currentPage,
@@ -33,7 +35,7 @@ const TableData = (props) => {
 
   const TopContent = useMemo(() => {
     return (
-      <div className="flex flex-col-reverse items-start justify-between gap-y-4 lg:flex-row lg:items-center">
+      <div className="flex flex-col-reverse items-start justify-between gap-y-4 lg:flex-row lg:items-center  font-sans">
         {showSearch && (
           <Input
             placeholder="Search"
@@ -48,10 +50,19 @@ const TableData = (props) => {
           {buttonTopContentLabel && (
             <Button
               color="primary"
-              className="text-white font-sans"
+              className="text-white"
               onPress={onClickButtonTopContent}
             >
               {buttonTopContentLabel}
+            </Button>
+          )}
+          {buttonTopContentLabelSecond && (
+            <Button
+              color="primary"
+              variant="flat"
+              onPress={onClickButtonTopContentSecond}
+            >
+              {buttonTopContentLabelSecond}
             </Button>
           )}
         </div>
@@ -59,7 +70,9 @@ const TableData = (props) => {
     );
   }, [
     buttonTopContentLabel,
+    buttonTopContentLabelSecond,
     onClickButtonTopContent,
+    onClickButtonTopContentSecond,
     showSearch,
     onClearSearch,
     onChangeSearch,
@@ -138,7 +151,9 @@ TableData.propTypes = {
   renderCell: PropTypes.func.isRequired,
   showSearch: PropTypes.bool,
   buttonTopContentLabel: PropTypes.string,
+  buttonTopContentLabelSecond: PropTypes.string,
   onClickButtonTopContent: PropTypes.func,
+  onClickButtonTopContentSecond: PropTypes.func,
   totalPages: PropTypes.number,
   currentPage: PropTypes.number,
   onChangePage: PropTypes.func,

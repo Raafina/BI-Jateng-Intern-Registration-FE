@@ -70,7 +70,6 @@ export const addWeight =
         'Authorization': `Bearer ${token}`,
       },
       url: `${import.meta.env.VITE_BACKEND_API}/weights`,
-
       data,
     };
     try {

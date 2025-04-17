@@ -21,7 +21,6 @@ const UpdateWeightDataModal = (props) => {
     weight,
     success,
     loading,
-    // setValue,
     reset,
     resetSuccess,
     getWeightById,

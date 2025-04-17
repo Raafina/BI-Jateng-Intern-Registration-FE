@@ -4,7 +4,8 @@ import { COLUMN_LISTS_APPLICATION_DATA } from '../ApplicationData/ApplicationDat
 import { FaRegEdit, FaRegTrashAlt } from 'react-icons/fa';
 import TableData from '../../../UI/TableData';
 import useApplicationData from './useApplicationData';
-import ApplicationDataModal from './ApplicationDataModal';
+import SearchApplicationDataModal from './SearchApplicationDataModal';
+import ProccessSAWDataModal from './ProccessSAWDataModal';
 import UpdateApplicationDataModal from './UpdateApplicationDataModal';
 import DeleteApplicationDataModal from './DeleteApplicationDataModal';
 
@@ -26,7 +27,8 @@ const ApplicationData = () => {
     handleClearSearch,
   } = useApplicationData();
 
-  const applicationDataModal = useDisclosure();
+  const searchApplicationDataModal = useDisclosure();
+  const proccessApplicationDataModal = useDisclosure();
   const updateApplicationDataModal = useDisclosure();
   const deleteApplicationDataModal = useDisclosure();
 
@@ -56,7 +58,7 @@ const ApplicationData = () => {
         );
       case 'actions':
         return (
-          <div className="flex justify-center items-center gap-2">
+          <div className="flex items-center gap-2">
             <button
               type="button"
               className="bg-primary text-white p-2 rounded-xl hover:bg-opacity-80"
@@ -88,8 +90,8 @@ const ApplicationData = () => {
     <section>
       <TableData
         showDate
-        buttonTopContentLabel="Cari Data"
-        buttonTopContentLabelSecond="Update Data"
+        buttonTopContentLabel="Ubah Periode"
+        buttonTopContentLabelSecond="Jalankan Proses Seleksi"
         columns={COLUMN_LISTS_APPLICATION_DATA}
         data={ApplicationsData || []}
         emptyContent="Hasil seleksi tidak ditemukan"
@@ -97,18 +99,19 @@ const ApplicationData = () => {
         renderCell={renderCell}
         totalPages={totalPages}
         currentPage={currentPage}
-        onClickButtonTopContent={applicationDataModal.onOpen}
-        onClickButtonTopContentSecond={updateApplicationDataModal.onOpen}
+        onClickButtonTopContent={searchApplicationDataModal.onOpen}
+        onClickButtonTopContentSecond={proccessApplicationDataModal.onOpen}
         onChangePage={handlePageChange}
         onChangeSearch={handleSearch}
         onClearSearch={handleClearSearch}
       />
 
-      <ApplicationDataModal
-        {...applicationDataModal}
+      <SearchApplicationDataModal
+        {...searchApplicationDataModal}
         setMonth={setMonth}
         setYear={setYear}
       />
+      <ProccessSAWDataModal {...proccessApplicationDataModal} />
       <UpdateApplicationDataModal
         {...updateApplicationDataModal}
         fetchResults={fetchResults}

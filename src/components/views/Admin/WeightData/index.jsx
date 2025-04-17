@@ -67,7 +67,6 @@ const WeightData = () => {
       <TableData
         showDate
         buttonTopContentLabel="Tambah Bobot"
-        buttonTopContentLabelSecond="Update Data"
         columns={COLUMN_LIST_WEIGHT_DATA}
         data={WeightsData || []}
         emptyContent="Data bobot tidak ditemukan"

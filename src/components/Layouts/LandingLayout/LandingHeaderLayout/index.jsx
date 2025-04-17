@@ -22,7 +22,8 @@ const LandingHeaderLayout = () => {
       className="fixed top-0 left-0 w-full shadow-md z-50"
       classNames={{
         wrapper: 'max-w-7xl px-6 ',
-      }}>
+      }}
+    >
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
@@ -38,7 +39,8 @@ const LandingHeaderLayout = () => {
           <NavbarItem key={item.href}>
             <Link
               href={item.href}
-              className="text-black hover:underline hover:text-primary font-sans">
+              className="text-black hover:underline hover:text-primary font-sans"
+            >
               {item.label}
             </Link>
           </NavbarItem>
@@ -51,9 +53,10 @@ const LandingHeaderLayout = () => {
             radius="full"
             as={Link}
             color="primary"
-            href="/register"
+            href="/daftar"
             target="_blank"
-            className=" font-inter px-8  text-white">
+            className=" font-inter px-8  text-white"
+          >
             Daftar
           </Button>
         </NavbarItem>
@@ -64,16 +67,18 @@ const LandingHeaderLayout = () => {
               <Link
                 className="w-full text-black hover:underline hover:text-primary font-sans"
                 href={item.href}
-                onPress={() => setIsMenuOpen(false)}>
+                onPress={() => setIsMenuOpen(false)}
+              >
                 {item.label}
               </Link>
             </NavbarMenuItem>
           ))}
           <Link
             as={Link}
-            href="/register"
+            href="/daftar"
             target="_blank"
-            className="font-sans hover:underline">
+            className="font-sans hover:underline"
+          >
             Daftar
           </Link>
         </NavbarMenu>

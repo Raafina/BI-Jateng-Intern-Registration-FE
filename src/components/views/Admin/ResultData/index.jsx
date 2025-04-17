@@ -56,7 +56,7 @@ const ResultData = () => {
     <section>
       <TableData
         showDate
-        buttonTopContentLabel="Cari Data"
+        buttonTopContentLabel="Ubah Periode"
         columns={COLUMN_LISTS_RESULT_DATA}
         data={ResultSAW_Data}
         emptyContent="Hasil seleksi tidak ditemukan"
