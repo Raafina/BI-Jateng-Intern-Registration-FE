@@ -1,6 +1,9 @@
+import { useCallback, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import { useDispatch } from 'react-redux';
+import { addApplication } from '../../../redux/actions/applicationActions';
 
 const registerSchema = yup.object().shape({
   full_name: yup.string().required('Nama lengkap wajib diisi'),
@@ -9,7 +12,7 @@ const registerSchema = yup.object().shape({
   phone: yup.string().required('No. HP wajib diisi'),
   intern_category: yup
     .string()
-    .oneOf(['magang_KRS', 'magang_mandiri'], 'Tipe magang tidak valid')
+    .oneOf(['Magang KRS', 'Magang Mandiri'], 'Tipe magang tidak valid')
     .required('Tipe magang wajib diisi'),
   semester: yup.number().min(1, 'Minimal Semester 4').required(),
   division_request: yup
@@ -66,18 +69,35 @@ const registerSchema = yup.object().shape({
 });
 
 const useRegister = () => {
+  const [loading, setIsLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+
+  const dispatch = useDispatch();
+
   const {
     control,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(registerSchema),
   });
 
+  const handleRegister = useCallback(
+    (data) => {
+      dispatch(addApplication(data, setIsLoading, setSuccess));
+    },
+    [dispatch]
+  );
+
   return {
     control,
     errors,
+    loading,
+    success,
+    reset,
     handleSubmit,
+    handleRegister,
   };
 };
 

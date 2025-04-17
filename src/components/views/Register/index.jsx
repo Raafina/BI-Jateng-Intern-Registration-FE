@@ -1,3 +1,6 @@
+import { motion } from 'framer-motion';
+import { Controller } from 'react-hook-form';
+import useRegister from './useRegister';
 import {
   Card,
   CardBody,
@@ -6,21 +9,39 @@ import {
   DatePicker,
   Button,
   Input,
+  Spinner,
 } from '@heroui/react';
-import {} from '@heroui/react';
-import { motion } from 'framer-motion';
-import { Controller } from 'react-hook-form';
-import useRegister from './useRegister';
 import {
   COLLEGE_MAJOR,
   INTERN_CATEGORY,
   DIVISION_REQUEST,
 } from './Register.constant';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const RegisterForm = () => {
-  const { control, errors, handleSubmit } = useRegister();
+  const navigate = useNavigate();
+  const {
+    control,
+    errors,
+    loading,
+    reset,
+    success,
+    handleSubmit,
+    handleRegister,
+  } = useRegister();
+
+  useEffect(() => {
+    if (success) {
+      reset();
+      navigate('/pendaftaran-sukses', {
+        state: { fromSubmit: true },
+      });
+    }
+  }, [success, reset, navigate]);
+
   return (
-    <>
+    <section>
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
@@ -37,7 +58,10 @@ const RegisterForm = () => {
             >
               Formulir Pendaftaran
             </motion.h1>
-            <form className="grid grid-cols-1 md:grid-cols-2 gap-6 font-sans overflow-hidden">
+            <form
+              className="grid grid-cols-1 md:grid-cols-2 gap-6 font-sans overflow-hidden"
+              onSubmit={handleSubmit(handleRegister)}
+            >
               <motion.div
                 className="space-y-4"
                 initial={{ opacity: 0, x: -50 }}
@@ -249,7 +273,6 @@ const RegisterForm = () => {
                   />
                 </div>
 
-                {/* Buttons */}
                 <motion.div
                   className="flex justify-center md:justify-end mt-6"
                   initial={{ opacity: 0, scale: 0.8 }}
@@ -258,13 +281,11 @@ const RegisterForm = () => {
                 >
                   <Button
                     radius="full"
-                    target="_blank"
                     color="primary"
-                    className="font-inter px-8 w-full md:w-0  text-white "
+                    className="font-inter px-8 text-white "
                     type="submit"
-                    onPress={handleSubmit(() => {})}
                   >
-                    Daftar
+                    {loading ? <Spinner /> : 'Daftar'}
                   </Button>
                 </motion.div>
               </motion.div>
@@ -272,7 +293,7 @@ const RegisterForm = () => {
           </CardBody>
         </Card>
       </motion.div>
-    </>
+    </section>
   );
 };
 

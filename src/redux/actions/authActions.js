@@ -30,7 +30,7 @@ export const login =
 
       navigate('/beranda');
 
-      toast.success('Login success');
+      toast.success('Login berhasil');
     } catch (error) {
       toast.error(error?.response?.data?.message);
     }

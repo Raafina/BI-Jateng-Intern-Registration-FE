@@ -6,6 +6,7 @@ import store from './redux/store';
 import Home from './pages/Landing';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import RegisterSuccess from './pages/Register/RegisterSuccess';
 import Dashboard from './pages/Admin/Dashboard';
 import ApplicationDataPage from './pages/Admin/ApplicationData';
 import ResultDataPage from './pages/Admin/ResultData';
@@ -29,6 +30,14 @@ const router = createBrowserRouter([
     element: (
       <>
         <Register />
+      </>
+    ),
+  },
+  {
+    path: '/pendaftaran-sukses',
+    element: (
+      <>
+        <RegisterSuccess />
       </>
     ),
   },

@@ -1,62 +1,62 @@
 const COLLEGE_MAJOR = [
   {
-    value: 'akuntansi',
+    value: 'Akuntansi',
     label: 'Akuntansi',
   },
   {
-    value: 'manajemen',
+    value: 'Manajemen',
     label: 'Manajemen',
   },
   {
     value: 'IT',
-    label: 'Teknologi Informasi',
+    label: 'IT',
   },
   {
-    value: 'hukum',
+    value: 'Hukum',
     label: 'Hukum',
   },
   {
-    value: 'statistika',
+    value: 'Statistika',
     label: 'Statistika',
   },
   {
-    value: 'ilmu_sosial',
+    value: 'Ilmu Sosial',
     label: 'Ilmu Sosial',
   },
 ];
 const DIVISION_REQUEST = [
   {
-    value: 'moneter',
+    value: 'Moneter',
     label: 'Moneter',
   },
   {
-    value: 'makroprudensial',
+    value: 'Makroprudensial',
     label: 'Makroprudensial',
   },
   {
-    value: 'sistem_pembayaran',
+    value: 'Sistem Pembayaran',
     label: 'Sistem Pembayaran',
   },
   {
-    value: 'pengelolaan_uang_rupiah',
+    value: 'Pengelolaan Uang Rupiah',
     label: 'Pengelolaan Uang Rupiah',
   },
   {
-    value: 'humas',
+    value: 'Humas',
     label: 'Humas',
   },
   {
-    value: 'internal',
+    value: 'Internal',
     label: 'Internal',
   },
 ];
 const INTERN_CATEGORY = [
   {
-    value: 'magang_KRS',
+    value: 'Magang KRS',
     label: 'Magang KRS',
   },
   {
-    value: 'magang_mandiri',
+    value: 'Magang Mandiri',
     label: 'Magang Mandiri',
   },
 ];

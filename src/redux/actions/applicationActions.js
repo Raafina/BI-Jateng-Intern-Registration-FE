@@ -73,6 +73,28 @@ export const getApplication =
     }
   };
 
+export const addApplication = (data, setLoading, setSuccess) => {
+  return async () => {
+    let config = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      url: `${import.meta.env.VITE_BACKEND_API}/applications`,
+      data,
+    };
+    try {
+      setLoading(true);
+      await axios.request(config);
+      setSuccess(true);
+    } catch (error) {
+      toast.error(error?.response?.data?.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+};
+
 export const updateApplication =
   (id, data, setLoading, setSuccess) => async (dispatch, getState) => {
     const { token } = getState().auth;

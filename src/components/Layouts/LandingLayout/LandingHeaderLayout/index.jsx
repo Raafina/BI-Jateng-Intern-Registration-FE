@@ -55,7 +55,7 @@ const LandingHeaderLayout = () => {
             color="primary"
             href="/daftar"
             target="_blank"
-            className=" font-inter px-8  text-white"
+            className="font-inter px-8 text-white"
           >
             Daftar
           </Button>
