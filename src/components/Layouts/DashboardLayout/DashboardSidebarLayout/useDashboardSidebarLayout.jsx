@@ -8,7 +8,7 @@ const useDashboardSidebar = () => {
 
   const handleLogout = () => {
     dispatch(logout());
-    navigate('/login');
+    navigate('/admin/login');
   };
 
   return { handleLogout };

@@ -28,7 +28,7 @@ export const login =
       dispatch(setToken(token));
       dispatch(setUser(user));
 
-      navigate('/beranda');
+      navigate('/admin/data-pendaftar');
 
       toast.success('Login berhasil');
     } catch (error) {

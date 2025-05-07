@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { setSAWResults } from '../reducers/SAWResultReducers';
+import { setDSSResults } from '../reducers/DSSResultReducers';
 
-export const getSAWResults =
+export const getDSSResults =
   (
     month,
     year,
@@ -21,7 +21,7 @@ export const getSAWResults =
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`,
       },
-      url: `${import.meta.env.VITE_BACKEND_API}/SAW`,
+      url: `${import.meta.env.VITE_BACKEND_API}/DSS`,
       params: {
         month,
         year,
@@ -34,12 +34,12 @@ export const getSAWResults =
     try {
       setLoading(true);
       const response = await axios.request(config);
-      dispatch(setSAWResults(response.data.data));
+      dispatch(setDSSResults(response.data.data));
       setTotalPages(response.data.pagination.totalPages);
       setTotalItems(response.data.pagination.totalItems);
     } catch (error) {
       toast.error(error?.response?.data?.message);
-      dispatch(setSAWResults([]));
+      dispatch(setDSSResults([]));
       setTotalPages(0);
     } finally {
       setLoading(false);
@@ -56,7 +56,7 @@ export const calculateSAW =
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`,
       },
-      url: `${import.meta.env.VITE_BACKEND_API}/SAW`,
+      url: `${import.meta.env.VITE_BACKEND_API}/DSS`,
       data,
     };
     try {

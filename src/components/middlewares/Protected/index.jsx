@@ -8,7 +8,7 @@ const Protected = ({ children }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getProfile(navigate, null, '/login'));
+    dispatch(getProfile(navigate, null, '/admin/login'));
   }, [dispatch, navigate]);
 
   return children;

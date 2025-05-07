@@ -12,9 +12,9 @@ const LandingFooterLayout = () => {
           <div className="grid grid-cols-12">
             {/* Logo Section */}
             <div className="col-span-12 lg:col-span-6 mb-6 md:mb-0">
-              <a href="/" className="flex items-center">
+              <Link href="/" className="flex items-center">
                 <img src={BILogo} alt="BI Logo" width={170} height={90} />
-              </a>
+              </Link>
             </div>
 
             <div className="col-span-12 lg:col-span-6 md:mt-5 lg:mt-0 lg:text-end">
@@ -24,7 +24,8 @@ const LandingFooterLayout = () => {
                   <li>
                     <Link
                       href="https://maps.app.goo.gl/6YCtv4GhMYqq1X3u8"
-                      target="_blank">
+                      target="_blank"
+                    >
                       <p>
                         Kantor Perwakilan Bank Indonesia Provinsi Jawa Tengah
                       </p>
@@ -54,7 +55,8 @@ const LandingFooterLayout = () => {
                   key={index}
                   href={item.url}
                   className="text-gray-500 hover:text-blue"
-                  aria-label={item.name}>
+                  aria-label={item.name}
+                >
                   <svg
                     className="w-6 h-6"
                     aria-hidden="true"
@@ -62,7 +64,8 @@ const LandingFooterLayout = () => {
                     width="24"
                     height="24"
                     fill="currentColor"
-                    viewBox="0 0 24 24">
+                    viewBox="0 0 24 24"
+                  >
                     {item.icon}
                   </svg>
                 </Link>

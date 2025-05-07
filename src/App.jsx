@@ -7,7 +7,7 @@ import Home from './pages/Landing';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import RegisterSuccess from './pages/Register/RegisterSuccess';
-import Dashboard from './pages/Admin/Dashboard';
+// import Dashboard from './pages/Admin/Dashboard';
 import ApplicationDataPage from './pages/Admin/ApplicationData';
 import ResultDataPage from './pages/Admin/ResultData';
 import WeightDataPage from './pages/Admin/WeightData';
@@ -42,7 +42,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: '/login',
+    path: '/admin/login',
     element: (
       <>
         <NonProtected>
@@ -51,16 +51,16 @@ const router = createBrowserRouter([
       </>
     ),
   },
+  // {
+  //   path: '/admin/beranda',
+  //   element: (
+  //     <Protected>
+  //       <Dashboard />
+  //     </Protected>
+  //   ),
+  // },
   {
-    path: '/beranda',
-    element: (
-      <Protected>
-        <Dashboard />
-      </Protected>
-    ),
-  },
-  {
-    path: '/data-pendaftar',
+    path: '/admin/data-pendaftar',
     element: (
       <Protected>
         <ApplicationDataPage />
@@ -68,7 +68,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: '/hasil-seleksi',
+    path: '/admin/hasil-seleksi',
     element: (
       <Protected>
         <ResultDataPage />
@@ -76,7 +76,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: '/bobot',
+    path: '/admin/bobot',
     element: (
       <Protected>
         <WeightDataPage />
