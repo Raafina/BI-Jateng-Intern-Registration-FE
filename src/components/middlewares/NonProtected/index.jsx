@@ -8,7 +8,7 @@ const NonProtected = ({ children }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getProfile(navigate, '/admin/beranda', null));
+    dispatch(getProfile(navigate, '/admin/data-pendaftar', null));
   }, [dispatch, navigate]);
 
   return children;

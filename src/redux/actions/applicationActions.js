@@ -88,7 +88,11 @@ export const addApplication = (data, setLoading, setSuccess) => {
       await axios.request(config);
       setSuccess(true);
     } catch (error) {
-      toast.error(error?.response?.data?.message);
+      if (error?.response?.data?.message) {
+        toast.error(error?.response?.data?.message);
+        return;
+      }
+      toast.error(error?.response?.data?.message[0]);
     } finally {
       setLoading(false);
     }

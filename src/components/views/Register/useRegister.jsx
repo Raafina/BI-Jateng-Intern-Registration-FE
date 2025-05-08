@@ -9,12 +9,23 @@ const registerSchema = yup.object().shape({
   full_name: yup.string().required('Nama lengkap wajib diisi'),
   university: yup.string().required('Asal Universitas wajib diisi'),
   email: yup.string().email('Email tidak valid').required('Email wajib diisi'),
-  phone: yup.string().required('No. HP wajib diisi'),
+  phone: yup
+    .string()
+    .required('No. Telepon wajib diisi')
+    .min(10, 'No. Telepon tidak boleh kurang dari 10 angka')
+    .max(15, 'No. Telepon tidak boleh lebih dari 15 angka'),
   intern_category: yup
     .string()
     .oneOf(['Magang KRS', 'Magang Mandiri'], 'Tipe magang tidak valid')
     .required('Tipe magang wajib diisi'),
-  semester: yup.number().min(1, 'Minimal Semester 4').required(),
+  KRS_remaining: yup
+    .number('Sisa KRS harus berupa angka')
+    .required('Sisa KRS wajib diisi')
+    .min(1, 'Sisa KRS tidak boleh kurang dari 0'),
+  semester: yup
+    .number('Semester harus berupa angka')
+    .min(1, 'Minimal Semester 4')
+    .required('Semester wajib diisi'),
   division_request: yup
     .string()
     .oneOf(
@@ -29,7 +40,10 @@ const registerSchema = yup.object().shape({
       'Bidang Peminatan tidak valid'
     )
     .required('Bidang Peminatan wajib diisi'),
-  IPK: yup.number().required('IPK wajib diisi'),
+  IPK: yup
+    .number()
+    .required('IPK wajib diisi')
+    .min(1, 'IPK tidak boleh kurang dari 0'),
   college_major: yup
     .string()
     .oneOf(
@@ -65,7 +79,7 @@ const registerSchema = yup.object().shape({
   google_drive_link: yup
     .string()
     .url('Harus berupa link valid')
-    .required('Link Google Drive wajib diisi'),
+    .required('Link pemberkasan wajib diisi'),
 });
 
 const useRegister = () => {

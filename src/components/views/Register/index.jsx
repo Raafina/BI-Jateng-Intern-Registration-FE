@@ -11,6 +11,7 @@ import {
   Input,
   Spinner,
 } from '@heroui/react';
+import { NumberInput } from '@heroui/number-input';
 import {
   COLLEGE_MAJOR,
   INTERN_CATEGORY,
@@ -111,6 +112,10 @@ const RegisterForm = () => {
                       autoComplete="off"
                       isInvalid={errors.phone !== undefined}
                       errorMessage={errors.phone?.message}
+                      onChange={(e) => {
+                        const onlyDigits = e.target.value.replace(/\D/g, '');
+                        field.onChange(onlyDigits);
+                      }}
                     />
                   )}
                 />
@@ -153,9 +158,8 @@ const RegisterForm = () => {
                   name="semester"
                   control={control}
                   render={({ field }) => (
-                    <Input
+                    <NumberInput
                       {...field}
-                      type="text"
                       label="Semester"
                       variant="faded"
                       autoComplete="off"
@@ -164,6 +168,35 @@ const RegisterForm = () => {
                     />
                   )}
                 />
+                <Controller
+                  name="KRS_remaining"
+                  control={control}
+                  render={({ field }) => (
+                    <NumberInput
+                      {...field}
+                      label="Sisa KRS"
+                      variant="faded"
+                      autoComplete="off"
+                      isInvalid={errors.KRS_remaining !== undefined}
+                      errorMessage={errors.KRS_remaining?.message}
+                    />
+                  )}
+                />
+                <motion.div
+                  className="hidden md:flex mt-6"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.8, ease: 'easeOut', delay: 0.5 }}
+                >
+                  <Button
+                    color="primary"
+                    size="lg"
+                    className="font-inter px-8 text-white w-full"
+                    type="submit"
+                  >
+                    {loading ? <Spinner color="default" size="sm" /> : 'Daftar'}
+                  </Button>
+                </motion.div>
               </motion.div>
 
               {/* Right Section */}
@@ -177,9 +210,8 @@ const RegisterForm = () => {
                     name="IPK"
                     control={control}
                     render={({ field }) => (
-                      <Input
+                      <NumberInput
                         {...field}
-                        type="number"
                         label="IPK"
                         variant="faded"
                         autoComplete="off"
@@ -272,20 +304,19 @@ const RegisterForm = () => {
                     )}
                   />
                 </div>
-
                 <motion.div
-                  className="flex justify-center md:justify-end mt-6"
+                  className="md:hidden flex mt-6"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.8, ease: 'easeOut', delay: 0.5 }}
                 >
                   <Button
-                    radius="full"
                     color="primary"
-                    className="font-inter px-8 text-white "
+                    size="lg"
+                    className="font-inter px-8 text-white w-full"
                     type="submit"
                   >
-                    {loading ? <Spinner /> : 'Daftar'}
+                    {loading ? <Spinner color="default" size="sm" /> : 'Daftar'}
                   </Button>
                 </motion.div>
               </motion.div>
