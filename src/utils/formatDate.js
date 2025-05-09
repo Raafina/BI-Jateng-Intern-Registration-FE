@@ -11,7 +11,7 @@ const formatTime = (timeObj) => {
   const { hour, minute } = timeObj;
   const hh = String(hour).padStart(2, '0');
   const mm = String(minute).padStart(2, '0');
-  return `${hh}.${mm} - `;
+  return `${hh}.${mm}`;
 };
 
 export { formatDate, formatTime };
