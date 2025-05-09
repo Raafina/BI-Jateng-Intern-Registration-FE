@@ -78,7 +78,16 @@ export const addWeight =
       setSuccess(true);
       toast.success('Data bobot berhasil ditambahkan');
     } catch (error) {
-      toast.error(error?.response?.data?.message);
+      const message = error?.response?.data?.message;
+
+      if (Array.isArray(message)) {
+        toast.error(message[0]);
+      } else if (typeof message === 'string') {
+        toast.error(message);
+      } else {
+        toast.error('Terjadi kesalahan saat menyimpan data');
+      }
+      return;
     } finally {
       setLoading(false);
     }
@@ -103,8 +112,16 @@ export const updateWeight =
       setSuccess(true);
       toast.success('Data bobot berhasil diubah');
     } catch (error) {
-      console.log(error);
-      toast.error(error?.response?.data?.message);
+      const message = error?.response?.data?.message;
+
+      if (Array.isArray(message)) {
+        toast.error(message[0]);
+      } else if (typeof message === 'string') {
+        toast.error(message);
+      } else {
+        toast.error('Terjadi kesalahan saat menyimpan data');
+      }
+      return;
     } finally {
       setLoading(false);
     }

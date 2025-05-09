@@ -32,6 +32,8 @@ const WeightData = () => {
   const renderCell = (item, columnKey) => {
     const cellValue = item[columnKey];
     switch (columnKey) {
+      case 'name':
+        return cellValue;
       case 'actions':
         return (
           <div className="flex items-center gap-2">
@@ -58,7 +60,7 @@ const WeightData = () => {
           </div>
         );
       default:
-        return cellValue;
+        return <p>{cellValue}%</p>;
     }
   };
 

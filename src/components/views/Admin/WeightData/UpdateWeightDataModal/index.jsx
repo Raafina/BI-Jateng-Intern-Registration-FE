@@ -137,6 +137,21 @@ const UpdateWeightDataModal = (props) => {
                 )}
               />
               <Controller
+                name="KRS_remaining_weight"
+                control={control}
+                render={({ field }) => (
+                  <Input
+                    {...field}
+                    type="text"
+                    label="Bobot Sisa SKS"
+                    variant="faded"
+                    autoComplete="off"
+                    isInvalid={errors.KRS_remaining_weight !== undefined}
+                    errorMessage={errors.KRS_remaining_weight?.message}
+                  />
+                )}
+              />
+              <Controller
                 name="CV_score_weight"
                 control={control}
                 render={({ field }) => (
