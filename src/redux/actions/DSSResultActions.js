@@ -68,3 +68,28 @@ export const calculateSAW =
       setLoading(false);
     }
   };
+
+export const sendAcceptedEmail =
+  (data, setLoading) => async (dispatch, getState) => {
+    const { token } = getState().auth;
+
+    let config = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+      url: `${import.meta.env.VITE_BACKEND_API}/DSS/send-mail-accepted-intern`,
+      data,
+    };
+
+    try {
+      setLoading(true);
+      await axios.request(config);
+      toast.success('Email berhasil dikirim');
+    } catch (error) {
+      toast.error(error?.response?.data?.message);
+    } finally {
+      setLoading(false);
+    }
+  };

@@ -81,6 +81,7 @@ const ApplicationData = () => {
             </button>
           </div>
         );
+
       default:
         return cellValue;
     }

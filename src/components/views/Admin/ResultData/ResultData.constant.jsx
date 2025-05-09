@@ -31,6 +31,10 @@ const COLUMN_LISTS_RESULT_DATA = [
     name: 'SKOR TOTAL',
     uid: 'total_score',
   },
+  {
+    name: 'AKSI',
+    uid: 'actions',
+  },
 ];
 
 export { COLUMN_LISTS_RESULT_DATA };

@@ -1,13 +1,17 @@
 import { useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getDSSResults } from '../../../../redux/actions/DSSResultActions';
+import {
+  getDSSResults,
+  sendAcceptedEmail,
+} from '../../../../redux/actions/DSSResultActions';
 import useDebounce from '../../../../hooks/useDebounce';
 
 export const useResultData = () => {
   const [totalPages, setTotalPages] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [loadingSendMail, setLoadingSendMail] = useState(false);
   const [month, setMonth] = useState('08');
   const [year, setYear] = useState('2025');
 
@@ -32,9 +36,15 @@ export const useResultData = () => {
     [dispatch, month, year, setTotalPages, setTotalItems]
   );
 
+  const handleSendAcceptedEmail = useCallback(
+    async (candidateData) => {
+      dispatch(sendAcceptedEmail(candidateData, setLoadingSendMail));
+    },
+    [dispatch, setLoadingSendMail]
+  );
+
   const handleSearch = (e) => {
     const search = e.target.value;
-
     debounce(() => {
       setCurrentPage(1);
       fetchResults(1, search);
@@ -62,12 +72,14 @@ export const useResultData = () => {
     month,
     year,
     loading,
+    loadingSendMail,
     fetchResults,
     setMonth,
     setYear,
     handlePageChange,
     handleSearch,
     handleClearSearch,
+    handleSendAcceptedEmail,
   };
 };
 
