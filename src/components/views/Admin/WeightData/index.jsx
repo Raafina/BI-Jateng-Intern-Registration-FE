@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useDisclosure } from '@heroui/react';
 import { COLUMN_LIST_WEIGHT_DATA } from './WeightData.constant';
 import { FaRegEdit, FaRegTrashAlt } from 'react-icons/fa';
@@ -24,10 +23,6 @@ const WeightData = () => {
   const addWeightDataModal = useDisclosure();
   const updateWeightDataModal = useDisclosure();
   const deleteWeightDataModal = useDisclosure();
-
-  useEffect(() => {
-    fetchResults(currentPage);
-  }, [currentPage, fetchResults]);
 
   const renderCell = (item, columnKey) => {
     const cellValue = item[columnKey];

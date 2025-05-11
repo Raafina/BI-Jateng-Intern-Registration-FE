@@ -42,7 +42,7 @@ export const getApplications =
       setTotalPages(response.data.pagination.totalPages);
       setTotalItems(response.data.pagination.totalItems);
     } catch (error) {
-      toast.error(error?.response?.data?.message);
+      error;
       dispatch(setApplications([]));
       setTotalPages(0);
     } finally {
@@ -88,11 +88,16 @@ export const addApplication = (data, setLoading, setSuccess) => {
       await axios.request(config);
       setSuccess(true);
     } catch (error) {
-      if (error?.response?.data?.message) {
-        toast.error(error?.response?.data?.message);
-        return;
+      const message = error?.response?.data?.message;
+
+      if (Array.isArray(message)) {
+        toast.error(message[0]);
+      } else if (typeof message === 'string') {
+        toast.error(message);
+      } else {
+        toast.error('Terjadi kesalahan saat menyimpan data');
       }
-      toast.error(error?.response?.data?.message[0]);
+      return;
     } finally {
       setLoading(false);
     }

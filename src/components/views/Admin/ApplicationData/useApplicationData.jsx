@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getApplications } from '../../../../redux/actions/applicationActions';
 import useDebounce from '../../../../hooks/useDebounce';
@@ -57,6 +57,10 @@ export const useResultData = () => {
     },
     [fetchResults]
   );
+
+  useEffect(() => {
+    fetchResults(currentPage);
+  }, [month, year, currentPage, fetchResults]);
 
   return {
     ApplicationsData,

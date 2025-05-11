@@ -15,13 +15,10 @@ const ResultData = () => {
     ResultSAW_Data,
     totalPages,
     currentPage,
-    month,
-    year,
     loading,
     loadingSendMail,
     setMonth,
     setYear,
-    fetchResults,
     handlePageChange,
     handleSearch,
     handleSendAcceptedEmail,
@@ -39,15 +36,10 @@ const ResultData = () => {
   useEffect(() => {
     setRenderKey((prevKey) => prevKey + 1);
 
-    // If loading is complete, clear processing item
     if (!loadingSendMail) {
       setProcessingItemId(null);
     }
   }, [loadingSendMail]);
-
-  useEffect(() => {
-    fetchResults(1);
-  }, [month, year, fetchResults]);
 
   const renderCell = (item, columnKey) => {
     const cellValue = item[columnKey];

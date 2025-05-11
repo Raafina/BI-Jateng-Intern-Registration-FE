@@ -1,11 +1,10 @@
-import { useEffect } from 'react';
 import { useDisclosure } from '@heroui/react';
 import { COLUMN_LISTS_APPLICATION_DATA } from '../ApplicationData/ApplicationData.constant';
 import { FaRegEdit, FaRegTrashAlt } from 'react-icons/fa';
 import TableData from '../../../UI/TableData';
 import useApplicationData from './useApplicationData';
 import SearchApplicationDataModal from './SearchApplicationDataModal';
-import ProccessSAWDataModal from './ProccessSAWDataModal';
+import ProccessDSSDataModal from './ProccessDSSDataModal';
 import UpdateApplicationDataModal from './UpdateApplicationDataModal';
 import DeleteApplicationDataModal from './DeleteApplicationDataModal';
 
@@ -14,8 +13,6 @@ const ApplicationData = () => {
     ApplicationsData,
     totalPages,
     currentPage,
-    month,
-    year,
     loading,
     selectedId,
     setSelectedId,
@@ -31,10 +28,6 @@ const ApplicationData = () => {
   const proccessApplicationDataModal = useDisclosure();
   const updateApplicationDataModal = useDisclosure();
   const deleteApplicationDataModal = useDisclosure();
-
-  useEffect(() => {
-    fetchResults(currentPage);
-  }, [month, year, currentPage, fetchResults]);
 
   const renderCell = (item, columnKey) => {
     const cellValue = item[columnKey];
@@ -112,7 +105,7 @@ const ApplicationData = () => {
         setMonth={setMonth}
         setYear={setYear}
       />
-      <ProccessSAWDataModal {...proccessApplicationDataModal} />
+      <ProccessDSSDataModal {...proccessApplicationDataModal} />
       <UpdateApplicationDataModal
         {...updateApplicationDataModal}
         fetchResults={fetchResults}

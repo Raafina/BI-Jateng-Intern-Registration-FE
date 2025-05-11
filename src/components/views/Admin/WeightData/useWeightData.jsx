@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getWeights } from '../../../../redux/actions/weightActions';
 import useDebounce from '../../../../hooks/useDebounce';
@@ -45,6 +45,10 @@ const useWeightData = () => {
     },
     [fetchResults]
   );
+
+  useEffect(() => {
+    fetchResults(currentPage);
+  }, [currentPage, fetchResults]);
 
   return {
     totalPages,

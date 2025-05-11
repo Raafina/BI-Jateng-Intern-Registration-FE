@@ -1,8 +1,8 @@
 import ResultData from '../../../components/views/Admin/ResultData';
 import DashboardLayout from '../../../components/Layouts/DashboardLayout';
-import useApplicationData from '../../../components/views/Admin/ApplicationData/useApplicationData';
+import useResultData from '../../../components/views/Admin/ResultData/useResultData';
 const ResultDataPage = () => {
-  const { month, year } = useApplicationData();
+  const { month, year } = useResultData();
 
   return (
     <DashboardLayout

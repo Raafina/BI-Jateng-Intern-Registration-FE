@@ -53,7 +53,7 @@ export const getWeight = (id, setLoading) => async (dispatch, getState) => {
     const response = await axios.request(config);
     dispatch(setWeight(response.data.data));
   } catch (error) {
-    toast.error(error?.response?.data?.message);
+    error;
   } finally {
     setLoading(false);
   }

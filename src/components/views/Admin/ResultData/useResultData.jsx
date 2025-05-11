@@ -1,5 +1,6 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
 import {
   getDSSResults,
   sendAcceptedEmail,
@@ -7,16 +8,25 @@ import {
 import useDebounce from '../../../../hooks/useDebounce';
 
 export const useResultData = () => {
+  const [searchParams] = useSearchParams();
+  const dispatch = useDispatch();
+  const debounce = useDebounce();
   const [totalPages, setTotalPages] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [loadingSendMail, setLoadingSendMail] = useState(false);
-  const [month, setMonth] = useState('08');
-  const [year, setYear] = useState('2025');
 
-  const dispatch = useDispatch();
-  const debounce = useDebounce();
+  const now = new Date();
+  const defaultMonth = String(now.getMonth() + 1).padStart(2, '0');
+  const defaultYear = String(now.getFullYear());
+
+  const monthByParams = searchParams.get('month');
+  const yearByParams = searchParams.get('year');
+
+  const [month, setMonth] = useState(monthByParams || defaultMonth);
+  const [year, setYear] = useState(yearByParams || defaultYear);
+
   const ResultSAW_Data = useSelector((state) => state.DSSResult.DSSResults);
 
   const fetchResults = useCallback(
@@ -63,6 +73,10 @@ export const useResultData = () => {
     },
     [fetchResults]
   );
+
+  useEffect(() => {
+    fetchResults(1);
+  }, [month, year, fetchResults]);
 
   return {
     ResultSAW_Data,

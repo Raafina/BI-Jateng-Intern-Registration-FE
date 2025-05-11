@@ -38,7 +38,7 @@ export const getDSSResults =
       setTotalPages(response.data.pagination.totalPages);
       setTotalItems(response.data.pagination.totalItems);
     } catch (error) {
-      toast.error(error?.response?.data?.message);
+      error;
       dispatch(setDSSResults([]));
       setTotalPages(0);
     } finally {
@@ -46,8 +46,8 @@ export const getDSSResults =
     }
   };
 
-export const calculateSAW =
-  (data, setLoading) => async (dispatch, getState) => {
+export const calculateDSS =
+  (data, setLoading, navigate) => async (dispatch, getState) => {
     const { token } = getState().auth;
 
     let config = {
@@ -62,6 +62,7 @@ export const calculateSAW =
     try {
       setLoading(true);
       await axios.request(config);
+      navigate(`/admin/hasil-seleksi?month=${data.month}&year=${data.year}`);
     } catch (error) {
       toast.error(error?.response?.data?.message);
     } finally {
