@@ -8,9 +8,14 @@ export const useResultData = () => {
   const [totalItems, setTotalItems] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(false);
-  const [month, setMonth] = useState('08');
-  const [year, setYear] = useState('2025');
   const [selectedId, setSelectedId] = useState('');
+
+  const now = new Date();
+  const defaultMonth = String(now.getMonth() + 1).padStart(2, '0');
+  const defaultYear = String(now.getFullYear());
+
+  const [month, setMonth] = useState(defaultMonth);
+  const [year, setYear] = useState(defaultYear);
 
   const dispatch = useDispatch();
   const debounce = useDebounce();

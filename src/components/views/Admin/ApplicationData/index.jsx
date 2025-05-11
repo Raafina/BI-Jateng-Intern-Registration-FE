@@ -32,6 +32,14 @@ const ApplicationData = () => {
   const renderCell = (item, columnKey) => {
     const cellValue = item[columnKey];
     switch (columnKey) {
+      case 'start_month': {
+        const date = new Date(cellValue);
+        const formatted = `${String(date.getMonth() + 1).padStart(
+          2,
+          '0'
+        )}/${date.getFullYear()}`;
+        return <span>{formatted}</span>;
+      }
       case 'division_request':
         return (
           <p

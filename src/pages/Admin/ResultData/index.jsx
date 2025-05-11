@@ -1,17 +1,11 @@
 import ResultData from '../../../components/views/Admin/ResultData';
 import DashboardLayout from '../../../components/Layouts/DashboardLayout';
-import useResultData from '../../../components/views/Admin/ResultData/useResultData';
 const ResultDataPage = () => {
-  const { month, year } = useResultData();
-
   return (
     <DashboardLayout
-      title={'Hasil Seleksi Periode  ' + month + '/' + year}
+      title={'Hasil Seleksi'}
       description={
-        'Halaman ini akan menampilkan hasil seleksi periode ' +
-        month +
-        '/' +
-        year
+        'Halaman ini menampilkan hasil seleksi peserta magang berdasarkan data dan kriteria yang telah ditentukan sebelumnya.'
       }
     >
       <ResultData />

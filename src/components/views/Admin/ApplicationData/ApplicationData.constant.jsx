@@ -1,5 +1,9 @@
 const COLUMN_LISTS_APPLICATION_DATA = [
   {
+    name: 'BULAN',
+    uid: 'start_month',
+  },
+  {
     name: 'NAMA LENGKAP',
     uid: 'full_name',
   },
