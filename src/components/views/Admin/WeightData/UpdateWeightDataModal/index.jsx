@@ -41,6 +41,7 @@ const UpdateWeightDataModal = (props) => {
         IPK_weight: weight.IPK_weight || 0,
         intern_category_weight: weight.intern_category_weight || 0,
         college_major_weight: weight.college_major_weight || 0,
+        KRS_remaining_weight: weight.KRS_remaining_weight || 0,
         CV_score_weight: weight.CV_score_weight || 0,
         motivation_letter_score_weight:
           weight.motivation_letter_score_weight || 0,
@@ -103,6 +104,11 @@ const UpdateWeightDataModal = (props) => {
                     autoComplete="off"
                     isInvalid={errors.IPK_weight !== undefined}
                     errorMessage={errors.IPK_weight?.message}
+                    endContent={
+                      <span className="text-default-400 pointer-events-none flex items-center">
+                        %
+                      </span>
+                    }
                   />
                 )}
               />
@@ -118,6 +124,11 @@ const UpdateWeightDataModal = (props) => {
                     autoComplete="off"
                     isInvalid={errors.intern_category_weight !== undefined}
                     errorMessage={errors.intern_category_weight?.message}
+                    endContent={
+                      <span className="text-default-400 pointer-events-none flex items-center">
+                        %
+                      </span>
+                    }
                   />
                 )}
               />
@@ -133,6 +144,11 @@ const UpdateWeightDataModal = (props) => {
                     autoComplete="off"
                     isInvalid={errors.college_major_weight !== undefined}
                     errorMessage={errors.college_major_weight?.message}
+                    endContent={
+                      <span className="text-default-400 pointer-events-none flex items-center">
+                        %
+                      </span>
+                    }
                   />
                 )}
               />
@@ -148,6 +164,11 @@ const UpdateWeightDataModal = (props) => {
                     autoComplete="off"
                     isInvalid={errors.KRS_remaining_weight !== undefined}
                     errorMessage={errors.KRS_remaining_weight?.message}
+                    endContent={
+                      <span className="text-default-400 pointer-events-none flex items-center">
+                        %
+                      </span>
+                    }
                   />
                 )}
               />
@@ -163,6 +184,11 @@ const UpdateWeightDataModal = (props) => {
                     autoComplete="off"
                     isInvalid={errors.CV_score_weight !== undefined}
                     errorMessage={errors.CV_score_weight?.message}
+                    endContent={
+                      <span className="text-default-400 pointer-events-none flex items-center">
+                        %
+                      </span>
+                    }
                   />
                 )}
               />
@@ -181,6 +207,11 @@ const UpdateWeightDataModal = (props) => {
                     }
                     errorMessage={
                       errors.motivation_letter_score_weight?.message
+                    }
+                    endContent={
+                      <span className="text-default-400 pointer-events-none flex items-center">
+                        %
+                      </span>
                     }
                   />
                 )}

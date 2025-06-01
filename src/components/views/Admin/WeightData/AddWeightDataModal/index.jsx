@@ -83,6 +83,11 @@ const AddWeightDataModal = (props) => {
                     autoComplete="off"
                     isInvalid={errors.IPK_weight !== undefined}
                     errorMessage={errors.IPK_weight?.message}
+                    endContent={
+                      <span className="text-default-400 pointer-events-none flex items-center">
+                        %
+                      </span>
+                    }
                   />
                 )}
               />
@@ -98,6 +103,11 @@ const AddWeightDataModal = (props) => {
                     autoComplete="off"
                     isInvalid={errors.intern_category_weight !== undefined}
                     errorMessage={errors.intern_category_weight?.message}
+                    endContent={
+                      <span className="text-default-400 pointer-events-none flex items-center">
+                        %
+                      </span>
+                    }
                   />
                 )}
               />
@@ -113,6 +123,11 @@ const AddWeightDataModal = (props) => {
                     autoComplete="off"
                     isInvalid={errors.college_major_weight !== undefined}
                     errorMessage={errors.college_major_weight?.message}
+                    endContent={
+                      <span className="text-default-400 pointer-events-none flex items-center">
+                        %
+                      </span>
+                    }
                   />
                 )}
               />
@@ -128,6 +143,11 @@ const AddWeightDataModal = (props) => {
                     autoComplete="off"
                     isInvalid={errors.KRS_remaining_weight !== undefined}
                     errorMessage={errors.KRS_remaining_weight?.message}
+                    endContent={
+                      <span className="text-default-400 pointer-events-none flex items-center">
+                        %
+                      </span>
+                    }
                   />
                 )}
               />
@@ -143,6 +163,11 @@ const AddWeightDataModal = (props) => {
                     autoComplete="off"
                     isInvalid={errors.CV_score_weight !== undefined}
                     errorMessage={errors.CV_score_weight?.message}
+                    endContent={
+                      <span className="text-default-400 pointer-events-none flex items-center">
+                        %
+                      </span>
+                    }
                   />
                 )}
               />
@@ -161,6 +186,11 @@ const AddWeightDataModal = (props) => {
                     }
                     errorMessage={
                       errors.motivation_letter_score_weight?.message
+                    }
+                    endContent={
+                      <span className="text-default-400 pointer-events-none flex items-center">
+                        %
+                      </span>
                     }
                   />
                 )}

@@ -27,8 +27,9 @@ export const getDSSResults =
         year,
         page: currentPage,
         limit: 10,
-        sort: 'asc',
+        sort: 'desc',
         search: search,
+        sortBy: 'total_score',
       },
     };
     try {
