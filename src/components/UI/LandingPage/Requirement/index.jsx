@@ -44,8 +44,9 @@ const Requirement = () => {
                     <li>
                       Informasi bidang tugas dapat dilihat di{' '}
                       <a
-                        href="https://example.com"
-                        className="text-blue-600 hover:underline">
+                        href="https://www.bi.go.id/id/tentang-bi/profil/organisasi/departments.aspx"
+                        className="text-blue-600 hover:underline"
+                      >
                         tautan berikut ini
                       </a>
                       .
