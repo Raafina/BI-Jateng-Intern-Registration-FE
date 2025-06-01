@@ -16,6 +16,15 @@ import {
 
 const extractDate = (datetimeStr) => datetimeStr?.split('T')[0]?.split(' ')[0];
 
+const formatDateForDisplay = (dateString) => {
+  if (!dateString) return '';
+  const date = new Date(dateString);
+  const day = date.getDate().toString().padStart(2, '0');
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const year = date.getFullYear();
+  return `${day}/${month}/${year}`;
+};
+
 const UpdateApplicationDataModal = (props) => {
   const { isOpen, onClose, fetchResults, selectedId, setSelectedId } = props;
   const {
@@ -46,6 +55,7 @@ const UpdateApplicationDataModal = (props) => {
         university: application.university || '',
         intern_category: application.intern_category || '',
         semester: application.semester || '',
+        KRS_remaining: application.KRS_remaining || '',
         division_request: application.division_request || '',
         IPK: application.IPK || '',
         college_major: application.college_major || '',
@@ -187,6 +197,22 @@ const UpdateApplicationDataModal = (props) => {
                     )}
                   />
                   <Controller
+                    name="KRS_remaining"
+                    control={control}
+                    render={({ field }) => (
+                      <Input
+                        {...field}
+                        type="text"
+                        label="Sisa KRS"
+                        variant="faded"
+                        autoComplete="off"
+                        disabled
+                        isInvalid={errors.KRS_remaining !== undefined}
+                        errorMessage={errors.KRS_remaining?.message}
+                      />
+                    )}
+                  />
+                  <Controller
                     name="IPK"
                     control={control}
                     render={({ field }) => (
@@ -242,6 +268,7 @@ const UpdateApplicationDataModal = (props) => {
                       render={({ field }) => (
                         <Input
                           {...field}
+                          value={formatDateForDisplay(field.value)}
                           label="Tanggal Mulai Magang"
                           variant="faded"
                           autoComplete="off"
@@ -251,12 +278,14 @@ const UpdateApplicationDataModal = (props) => {
                         />
                       )}
                     />
+
                     <Controller
                       name="end_month"
                       control={control}
                       render={({ field }) => (
                         <Input
                           {...field}
+                          value={formatDateForDisplay(field.value)}
                           label="Tanggal Selesai Magang"
                           variant="faded"
                           autoComplete="off"

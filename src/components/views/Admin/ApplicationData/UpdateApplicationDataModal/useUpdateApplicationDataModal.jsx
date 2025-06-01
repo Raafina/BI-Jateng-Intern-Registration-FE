@@ -18,6 +18,10 @@ const updateApplicationSchema = yup.object().shape({
     .oneOf(['Magang KRS', 'Magang Mandiri'], 'Tipe magang tidak valid')
     .required('Tipe magang wajib diisi'),
   semester: yup.number().min(1, 'Minimal Semester 4').required(),
+  KRS_remaining: yup
+    .number()
+    .min(1, 'Sisa KRS tidak boleh kurang dari 0')
+    .required(),
   division_request: yup
     .string()
     .oneOf(
