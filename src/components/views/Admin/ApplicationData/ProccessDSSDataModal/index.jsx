@@ -48,22 +48,6 @@ const ProccessDSSDataModal = (props) => {
             <div className="space-y-4">
               <p className="font-medium">Keterangan Proses</p>
               <Controller
-                name="year"
-                control={control}
-                render={({ field }) => (
-                  <Input
-                    {...field}
-                    type="text"
-                    label="Tahun"
-                    placeholder="Masukkan tahun"
-                    variant="faded"
-                    autoComplete="off"
-                    isInvalid={errors.year !== undefined}
-                    errorMessage={errors.year?.message}
-                  />
-                )}
-              />
-              <Controller
                 name="month"
                 control={control}
                 render={({ field }) => (
@@ -76,6 +60,22 @@ const ProccessDSSDataModal = (props) => {
                     autoComplete="off"
                     isInvalid={errors.month !== undefined}
                     errorMessage={errors.month?.message}
+                  />
+                )}
+              />
+              <Controller
+                name="year"
+                control={control}
+                render={({ field }) => (
+                  <Input
+                    {...field}
+                    type="text"
+                    label="Tahun"
+                    placeholder="Masukkan tahun"
+                    variant="faded"
+                    autoComplete="off"
+                    isInvalid={errors.year !== undefined}
+                    errorMessage={errors.year?.message}
                   />
                 )}
               />

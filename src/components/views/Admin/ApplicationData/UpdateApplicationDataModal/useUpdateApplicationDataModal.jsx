@@ -20,7 +20,7 @@ const updateApplicationSchema = yup.object().shape({
   semester: yup.number().min(1, 'Minimal Semester 4').required(),
   KRS_remaining: yup
     .number()
-    .min(1, 'Sisa KRS tidak boleh kurang dari 0')
+    .min(1, 'Sisa SKS tidak boleh kurang dari 0')
     .required(),
   division_request: yup
     .string()

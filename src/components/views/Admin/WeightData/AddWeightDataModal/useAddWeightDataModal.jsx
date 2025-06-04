@@ -24,9 +24,9 @@ const addWeightSchema = yup.object().shape({
     .max(100, 'Bobot jurusan tidak boleh lebih dari 100'),
   KRS_remaining_weight: yup
     .number()
-    .required('Bobot sisa KRS wajib diisi')
-    .min(0, 'Bobot sisa KRS tidak boleh kurang dari 0')
-    .max(100, 'Bobot sisa KRS tidak boleh lebih dari 100'),
+    .required('Bobot sisa SKS wajib diisi')
+    .min(0, 'Bobot sisa SKS tidak boleh kurang dari 0')
+    .max(100, 'Bobot sisa SKS tidak boleh lebih dari 100'),
   CV_score_weight: yup
     .number()
     .required('Bobot skor CV wajib diisi')

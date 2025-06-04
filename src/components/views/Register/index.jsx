@@ -174,7 +174,7 @@ const RegisterForm = () => {
                   render={({ field }) => (
                     <NumberInput
                       {...field}
-                      label="Sisa KRS"
+                      label="Sisa SKS"
                       variant="faded"
                       autoComplete="off"
                       isInvalid={errors.KRS_remaining !== undefined}

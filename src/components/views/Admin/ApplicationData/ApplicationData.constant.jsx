@@ -20,6 +20,10 @@ const COLUMN_LISTS_APPLICATION_DATA = [
     uid: 'college_major',
   },
   {
+    name: 'SISA SKS',
+    uid: 'KRS_remaining',
+  },
+  {
     name: 'IPK',
     uid: 'IPK',
   },

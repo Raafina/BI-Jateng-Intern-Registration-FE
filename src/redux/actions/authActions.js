@@ -1,6 +1,12 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { setToken, setUser } from '../reducers/authReducers';
+import {
+  setApplications,
+  setApplication,
+} from '../reducers/applicationReducers';
+import { setDSSResults } from '../reducers/DSSResultReducers';
+import { setWeights, setWeight } from '../reducers/weightReducers';
 
 export const login =
   (navigate, email, password, setLoading) => async (dispatch) => {
@@ -94,4 +100,9 @@ export const getProfile =
 export const logout = () => (dispatch) => {
   dispatch(setToken(null));
   dispatch(setUser(null));
+  dispatch(setApplications([]));
+  dispatch(setDSSResults([]));
+  dispatch(setWeights([]));
+  dispatch(setApplication(null));
+  dispatch(setWeight(null));
 };

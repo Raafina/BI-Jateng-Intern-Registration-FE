@@ -19,9 +19,9 @@ const registerSchema = yup.object().shape({
     .oneOf(['Magang KRS', 'Magang Mandiri'], 'Tipe magang tidak valid')
     .required('Tipe magang wajib diisi'),
   KRS_remaining: yup
-    .number('Sisa KRS harus berupa angka')
-    .required('Sisa KRS wajib diisi')
-    .min(1, 'Sisa KRS tidak boleh kurang dari 0'),
+    .number('Sisa SKS harus berupa angka')
+    .required('Sisa SKS wajib diisi')
+    .min(1, 'Sisa SKS tidak boleh kurang dari 0'),
   semester: yup
     .number('Semester harus berupa angka')
     .min(1, 'Minimal Semester 4')

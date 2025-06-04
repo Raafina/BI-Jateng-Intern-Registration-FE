@@ -203,7 +203,7 @@ const UpdateApplicationDataModal = (props) => {
                       <Input
                         {...field}
                         type="text"
-                        label="Sisa KRS"
+                        label="Sisa SKS"
                         variant="faded"
                         autoComplete="off"
                         disabled
